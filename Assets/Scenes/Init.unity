@@ -1209,7 +1209,7 @@ GameObject:
   - component: {fileID: 670020760}
   - component: {fileID: 670020763}
   - component: {fileID: 670020764}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (7)
   m_TagString: AudioRecorder
   m_Icon: {fileID: 0}

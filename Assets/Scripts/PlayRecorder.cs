@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayRecorder : MonoBehaviour
 {
     public Transform Eyes;
+    
 
     private AudioSource recorder;
     private float playDistance;
@@ -30,6 +31,7 @@ public class PlayRecorder : MonoBehaviour
                     if (Vector3.Distance(Eyes.position, transform.position) < playDistance)
                     {
                         recorder.Play();
+                        //Hay un problema cuando el jugador está demasiado cerca de la grabadora porque si colisionan ambos colliders, no pilla el .hit
                     }
                     
                     
