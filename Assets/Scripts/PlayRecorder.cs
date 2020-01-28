@@ -20,24 +20,28 @@ public class PlayRecorder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if (Input.GetMouseButtonDown(0))
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(Eyes.position, Eyes.forward, out hit, Mathf.Infinity))
-            {
-                if (hit.transform.tag == "AudioRecorder")
-                {
-                    //If we want to limitate the distance to play the recorder
-                    if (Vector3.Distance(Eyes.position, transform.position) < playDistance)
-                    {
-                        recorder.Play();
-                        //Hay un problema cuando el jugador está demasiado cerca de la grabadora porque si colisionan ambos colliders, no pilla el .hit
-                    }
-                    
-                    
-                }
-            }
-        }
+       
                 
+    }
+
+    void OnMouseDown()
+    {
+        //If we want to limitate the distance to play the recorder
+        if (Vector3.Distance(Eyes.position, transform.position) < playDistance)
+        {
+            if (recorder.isPlaying)
+            {
+                recorder.Pause();
+            }
+
+            else
+            {
+                recorder.Play();
+            }
+            
+            
+            //Hay un problema cuando el jugador está demasiado cerca de la grabadora porque si colisionan ambos colliders, no pilla el .hit
+            //Se puede solucionar haciendo que la grabadora esté encima de un objeto más grande, evitando la colisión con el jugador
+        }
     }
 }

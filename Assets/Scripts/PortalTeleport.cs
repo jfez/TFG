@@ -9,7 +9,13 @@ public class PortalTeleport : MonoBehaviour
 	public Transform reciever;
 
 	private bool playerIsOverlapping = false;
+	private AudioSource audiotp;
 
+	void Start()
+	{
+		audiotp = GetComponent<AudioSource>();
+	}
+	
 	// Update is called once per frame
 	void Update () {
 		if (playerIsOverlapping)
@@ -40,6 +46,7 @@ public class PortalTeleport : MonoBehaviour
 		if (other.tag == "Player")
 		{
 			playerIsOverlapping = true;
+			audiotp.Play();
 		}
 	}
 
