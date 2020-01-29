@@ -40,8 +40,7 @@ public class PlayRecorder : MonoBehaviour
             }
             
             
-            //Hay un problema cuando el jugador está demasiado cerca de la grabadora porque si colisionan ambos colliders, no pilla el .hit
-            //Se puede solucionar haciendo que la grabadora esté encima de un objeto más grande, evitando la colisión con el jugador
+            
         }
     }
 }

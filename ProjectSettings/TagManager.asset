@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Fire
   - AudioRecorder
+  - jail
+  - rama
   layers:
   - Default
   - TransparentFX

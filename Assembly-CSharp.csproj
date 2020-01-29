@@ -53,6 +53,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Glitch\ChangeCamera.cs" />
+     <Compile Include="Assets\Glitch\Glitch.cs" />
      <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
      <Compile Include="Assets\SampleScenes\Menu\Scripts\PauseMenu.cs" />
      <Compile Include="Assets\SampleScenes\Menu\Scripts\SceneAndURLLoader.cs" />
@@ -67,8 +69,10 @@
      <Compile Include="Assets\Scripts\PortalTeleport.cs" />
      <Compile Include="Assets\Scripts\PortalTextureSetup.cs" />
      <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
+     <Compile Include="Assets\Scripts\TreePuzzle.cs" />
      <Compile Include="Assets\Scripts\VoiceRecognition.cs" />
      <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+     <None Include="Assets\Glitch\Glitch.shader" />
      <None Include="Assets\Shaders\ScreenCutoutShader.shader" />
      <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />
  <Reference Include="Unity.RenderPipelines.Core.Editor">

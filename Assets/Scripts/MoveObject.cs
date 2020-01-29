@@ -13,7 +13,7 @@ public class MoveObject : MonoBehaviour
     {
         
         guide = GameObject.FindGameObjectWithTag("Player").transform;
-        grabDistance = 3f;
+        grabDistance = 30f;
     }
 
     // Update is called once per frame
