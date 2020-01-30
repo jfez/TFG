@@ -15,7 +15,8 @@ public class TreePuzzle : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
-        guide = GameObject.FindGameObjectWithTag("Player").transform;
+        rb.useGravity = true;
+        guide = GameObject.FindGameObjectWithTag("guide").transform;
         
         
     }
@@ -50,14 +51,12 @@ public class TreePuzzle : MonoBehaviour
         mOffset = transform.position - GetMouseAsWorldPoint();
         
         //item.GetComponent<Rigidbody>().useGravity = false;
-        if (rb.isKinematic)
-        {
-            rb.isKinematic = false;
-        }
+        rb.isKinematic = true;
+        rb.useGravity = false;
         
-        transform.position = guide.transform.position;
-        transform.rotation = guide.transform.rotation;
-        transform.parent = guide.transform.transform;
+        //transform.position = guide.transform.position;
+        //transform.rotation = guide.transform.rotation;
+        transform.parent = guide;
         
         
     }
@@ -65,8 +64,10 @@ public class TreePuzzle : MonoBehaviour
     void OnMouseUp(){
         //item.GetComponent<Rigidbody>().useGravity = true;
         //rb.isKinematic = true;
+        rb.isKinematic = false;
+        rb.useGravity = true;
         transform.parent = null;
-        //item.transform.position = guide.transform.position;
+        //transform.position = guide.position;
         
         
         
@@ -74,6 +75,6 @@ public class TreePuzzle : MonoBehaviour
 
     void OnMouseDrag()
     {
-        //transform.position = GetMouseAsWorldPoint() + mOffset;
+        transform.position = GetMouseAsWorldPoint() + mOffset;
     }
 }

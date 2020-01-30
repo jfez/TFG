@@ -8,6 +8,7 @@ TagManager:
   - AudioRecorder
   - jail
   - rama
+  - guide
   layers:
   - Default
   - TransparentFX
