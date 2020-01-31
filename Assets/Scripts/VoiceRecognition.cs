@@ -23,8 +23,8 @@ public class VoiceRecognition : MonoBehaviour
 
     public AudioMixerGroup _mixerGroupMicrophone, _mixerGroupMaster;
 
-    private GameObject[] jails;
-    private Animator[] jailAnimators;
+    public delegate void Action();
+    public static event Action ScreamStop;
 
 
 
@@ -66,14 +66,7 @@ public class VoiceRecognition : MonoBehaviour
             _audio.clip = null;
         }
 
-        jails = GameObject.FindGameObjectsWithTag("jail");
-
-        jailAnimators = new Animator [jails.Length];
-    
-        for (int i = 0; i < jails.Length; i++)
-        {
-            jailAnimators[i] = jails[i].GetComponent<Animator>();
-        }
+        
 
         
         
@@ -112,10 +105,11 @@ public class VoiceRecognition : MonoBehaviour
             if (highestLoudness > 20)
             {
                 audioScreams.Stop();
-                foreach(Animator animator in jailAnimators)
+                if(ScreamStop != null)
                 {
-                    animator.SetTrigger("jail");
+                    ScreamStop();
                 }
+                
                 Destroy(gameObject);
             }
             
