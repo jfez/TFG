@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ChangeCamera : MonoBehaviour
 {
-    public Camera camera1;
-    public Camera camera2;
+    //public Camera camera1;
+    //public Camera camera2;
 
     private float timer;
     private bool inside;
@@ -24,8 +24,8 @@ public class ChangeCamera : MonoBehaviour
         //recuerda que te ama con locura!
         timer = 0f;
         inside = false;
-        camera1.enabled = true;
-        camera2.enabled = false;
+        //camera1.enabled = true;
+        //camera2.enabled = false;
 
         audioShock = GetComponent<AudioSource>();
         tp = false;
@@ -51,8 +51,8 @@ public class ChangeCamera : MonoBehaviour
 
         if (timer >= 0.9f)
         {
-            camera1.enabled = true;
-            camera2.enabled = false;
+            //camera1.enabled = true;
+            //camera2.enabled = false;
             inside = false;
             timer = 0f;
             tp = false;
@@ -64,8 +64,8 @@ public class ChangeCamera : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            camera1.enabled = false;
-            camera2.enabled = true;
+            //camera1.enabled = false;
+            //camera2.enabled = true;
             inside = true;
             audioShock.Play();
             //rb.isKinematic = false;
