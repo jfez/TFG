@@ -1,0 +1,4 @@
+<time/>005.000|<b>Tyler: </b>I can't take them on my own, my own
+<time/>007.000|<trigger/>Cube-Grow-
+<time/>010.000|<b>Tyler: </b>Oh, I'm not the one you know, you know
+<time/>015.250|<break/>
