@@ -9,6 +9,7 @@ TagManager:
   - jail
   - rama
   - guide
+  - testTrigger
   layers:
   - Default
   - TransparentFX

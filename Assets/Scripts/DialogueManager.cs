@@ -45,7 +45,11 @@ public class DialogueManager : MonoBehaviour
     //Singleton property
     public static DialogueManager Instance {get; private set;}
 
-    private AudioSource audioSource;
+    public AudioSource audioSource;
+
+    private float timer;
+
+    public bool subtitlesEnabled;
     
     void Awake()
     {
@@ -56,10 +60,14 @@ public class DialogueManager : MonoBehaviour
 
         Instance = this;
         audioSource = gameObject.AddComponent<AudioSource>();
+        subtitlesEnabled = true;
+        
     }
 
     public void BeginDialogue (AudioClip passedClip)
     {
+        timer = 0f;
+        
         dialogueAudio = passedClip;
 
         subtitleLines = new List<string>();
@@ -136,8 +144,24 @@ public class DialogueManager : MonoBehaviour
         audioSource.clip = dialogueAudio;
         audioSource.Play();
         
+        
     }
 
+    void Update ()
+    {
+        //The timer is on only if we have a clip ready
+        if (audioSource.clip != null)
+        {
+            timer += Time.deltaTime;
+        }
+        
+        //If the clip is over, we remove it from the audioSource
+        if (audioSource.clip != null && timer > audioSource.clip.length)
+        {
+            audioSource.clip = null;
+        }
+    }
+    
     //Remove all characters that are not part of the timing float
     
     private string CleanTimeString (string timeString)
@@ -149,30 +173,57 @@ public class DialogueManager : MonoBehaviour
     void OnGUI ()
     {
         //Make sure that we are using a proper dialogeAudio file
-        if (dialogueAudio != null && audioSource.clip.name == dialogueAudio.name)
+        if (dialogueAudio != null && audioSource.clip != null && audioSource.clip.name == dialogueAudio.name)
         {
             //Check for the <break/> or negative nextSubtitle number
             if(nextSubtitle > 0 && !subtitleText[nextSubtitle-1].Contains("<break/>"))
             {
                 //Create our GUI
-                GUI.depth = -1001;
+                GUI.depth = -1001;  
                 subtitlesStyle.fixedWidth = Screen.width / scaleRatio;
                 subtitlesStyle.wordWrap = true;
                 subtitlesStyle.alignment = TextAnchor.MiddleCenter;
                 subtitlesStyle.normal.textColor = Color.white;
                 subtitlesStyle.fontSize = Mathf.FloorToInt(Screen.height * heightRatio);
 
-                Vector2 size = subtitlesStyle.CalcSize(new GUIContent());
-                GUI.contentColor = Color.black;
-                GUI.Label(new Rect(Screen.width/2 - size.x/2 + 1, Screen.height/1.25f - size.y + 1, size.x, size.y), displaySubtitle, subtitlesStyle);
-                GUI.contentColor = Color.white;
-                GUI.Label(new Rect(Screen.width/2 - size.x/2, Screen.height/1.25f - size.y, size.x, size.y), displaySubtitle, subtitlesStyle);
+                if (subtitlesEnabled && !ManagerMenu.Instance.paused)
+                {
+                    Vector2 size = subtitlesStyle.CalcSize(new GUIContent());
+                    GUI.contentColor = Color.black;
+                    GUI.Label(new Rect(Screen.width/2 - size.x/2 + 1, Screen.height/1.1f - size.y + 1, size.x, size.y), displaySubtitle, subtitlesStyle);
+                    GUI.contentColor = Color.white;
+                    GUI.Label(new Rect(Screen.width/2 - size.x/2, Screen.height/1.1f - size.y, size.x, size.y), displaySubtitle, subtitlesStyle);
+                }
+
+                else
+                {
+                    if (!subtitlesEnabled)
+                    {
+                        Vector2 size = subtitlesStyle.CalcSize(new GUIContent());
+                        GUI.contentColor = Color.black;
+                        GUI.Label(new Rect(Screen.width/2 - size.x/2 + 1, Screen.height/1.1f - size.y + 1, size.x, size.y), "", subtitlesStyle);
+                        GUI.contentColor = Color.white;
+                        GUI.Label(new Rect(Screen.width/2 - size.x/2, Screen.height/1.1f - size.y, size.x, size.y), "", subtitlesStyle);
+                    }
+
+                    else if (ManagerMenu.Instance.paused)
+                    {
+                        Vector2 size = subtitlesStyle.CalcSize(new GUIContent());
+                        GUI.contentColor = new Color (0,0,0,0.3f);
+                        GUI.Label(new Rect(Screen.width/2 - size.x/2 + 1, Screen.height/1.1f - size.y + 1, size.x, size.y), displaySubtitle, subtitlesStyle);
+                        GUI.contentColor = new Color (1,1,1,0.3f);
+                        GUI.Label(new Rect(Screen.width/2 - size.x/2, Screen.height/1.1f - size.y, size.x, size.y), displaySubtitle, subtitlesStyle);
+                    }
+                    
+                    
+                }
+                
             }
 
             //Increment nextSubtitle when we hit the associated time point
             if(nextSubtitle < subtitleText.Count)
             {
-                if (audioSource.timeSamples/_RATE > subtitleTimings[nextSubtitle])
+                if (timer > subtitleTimings[nextSubtitle])
                 {
                     displaySubtitle = subtitleText[nextSubtitle];
                     nextSubtitle++;
@@ -181,10 +232,10 @@ public class DialogueManager : MonoBehaviour
 
             //Fire triggers when we hit the associated time point
             if(nextTrigger < triggers.Count)
-            {
-                if (audioSource.timeSamples/_RATE > triggerTimings[nextTrigger])
+            { 
+                if (timer > triggerTimings[nextTrigger])
                 {
-                    GameObject.Find(triggerObjectNames[nextTrigger]).SendMessage(triggerMethodNames[nextTrigger]);
+                    GameObject.FindGameObjectWithTag(triggerObjectNames[nextTrigger]).SendMessage(triggerMethodNames[nextTrigger]);
                     nextTrigger++;
                 }
             }

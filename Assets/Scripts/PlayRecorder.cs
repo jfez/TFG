@@ -5,15 +5,17 @@ using UnityEngine;
 public class PlayRecorder : MonoBehaviour
 {
     public Transform Eyes;
+    public AudioClip dialogueClip;
     
 
-    private AudioSource recorder;
+    //private AudioSource recorder;
     private float playDistance;
+    
     
     // Start is called before the first frame update
     void Start()
     {
-        recorder = GetComponent<AudioSource>();
+        //recorder = GetComponent<AudioSource>();
         playDistance = 5f;
     }
 
@@ -29,17 +31,12 @@ public class PlayRecorder : MonoBehaviour
         //If we want to limitate the distance to play the recorder
         if (Vector3.Distance(Eyes.position, transform.position) < playDistance)
         {
-            if (recorder.isPlaying)
+            //We play the tape if there is not any tape playing 
+            //What if we change the tape??
+            if (!DialogueManager.Instance.audioSource.isPlaying)    // || DialogueManager.Instance.audioSource.clip != dialogueClip
             {
-                recorder.Pause();
+                DialogueManager.Instance.BeginDialogue(dialogueClip);
             }
-
-            else
-            {
-                recorder.Play();
-            }
-            
-            
             
         }
     }

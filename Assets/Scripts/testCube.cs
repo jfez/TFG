@@ -16,7 +16,7 @@ public class testCube : MonoBehaviour
         
     }
 
-    void Grow ()
+    void DebugTest ()
     {
         Debug.Log("YAY");
     }
