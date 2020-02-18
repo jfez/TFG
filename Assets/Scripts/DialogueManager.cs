@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -50,6 +51,7 @@ public class DialogueManager : MonoBehaviour
     private float timer;
 
     public bool subtitlesEnabled;
+    public Toggle toggle;
     
     void Awake()
     {
@@ -60,7 +62,19 @@ public class DialogueManager : MonoBehaviour
 
         Instance = this;
         audioSource = gameObject.AddComponent<AudioSource>();
-        subtitlesEnabled = true;
+
+        if (!PlayerPrefs.HasKey("subtitlesEnabled"))
+        {
+            PlayerPrefs.SetInt("subtitlesEnabled", true?1:0);
+            subtitlesEnabled = true;
+        }
+
+        else
+        {
+            subtitlesEnabled = PlayerPrefs.GetInt("subtitlesEnabled")==1?true:false;
+        }
+        
+        toggle.isOn = subtitlesEnabled;
         
     }
 

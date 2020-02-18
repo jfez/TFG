@@ -3967,6 +3967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasMenu: {fileID: 1315236802}
+  paused: 0
 --- !u!4 &1182691509
 Transform:
   m_ObjectHideFlags: 0
@@ -7355,6 +7356,8 @@ MonoBehaviour:
   triggerObjectNames: []
   triggerMethodNames: []
   audioSource: {fileID: 0}
+  subtitlesEnabled: 0
+  toggle: {fileID: 1505420688}
 --- !u!4 &1984280407
 Transform:
   m_ObjectHideFlags: 0

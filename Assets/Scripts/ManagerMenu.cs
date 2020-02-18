@@ -89,5 +89,6 @@ public class ManagerMenu : MonoBehaviour
     public void Toggle_Changed (bool newValue)
     {
         DialogueManager.Instance.subtitlesEnabled = newValue;
+        PlayerPrefs.SetInt("subtitlesEnabled", newValue?1:0);
     }
 }
