@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    private const float _RATE = 44100.0f;
+    //private const float _RATE = 44100.0f;
     
     private AudioClip dialogueAudio;
 
