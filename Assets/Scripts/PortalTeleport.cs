@@ -11,6 +11,9 @@ public class PortalTeleport : MonoBehaviour
 	private bool playerIsOverlapping = false;
 	private AudioSource audiotp;
 
+	public Transform ownGFX;
+	public Transform otherGFX;
+
 	void Start()
 	{
 		audiotp = GetComponent<AudioSource>();
@@ -32,9 +35,12 @@ public class PortalTeleport : MonoBehaviour
 				player.transform.Rotate(Vector3.up, rotationDiff);
 
 				Vector3 positionOffset = Quaternion.Euler(0f, rotationDiff, 0f) * portalToPlayer;
-				player.enabled =false;
+				player.enabled = false;
                 player.transform.position = reciever.position + positionOffset;
-                player.enabled =true;
+                player.enabled = true;
+
+				ownGFX.Rotate (0,0,180);
+				otherGFX.Rotate (0,0,180);
 
 				playerIsOverlapping = false;
 			}

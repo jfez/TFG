@@ -10,6 +10,8 @@ public class TreePuzzle : MonoBehaviour
     private Vector3 mOffset;
     private float mZCoord;
     private Rigidbody rb;
+
+    public GameObject colliderPortal;
     
     void Start()
     {
@@ -17,6 +19,7 @@ public class TreePuzzle : MonoBehaviour
         rb.isKinematic = true;
         rb.useGravity = true;
         guide = GameObject.FindGameObjectWithTag("guide").transform;
+        colliderPortal.SetActive(false);
         
         
     }
@@ -57,6 +60,12 @@ public class TreePuzzle : MonoBehaviour
         //transform.position = guide.transform.position;
         //transform.rotation = guide.transform.rotation;
         transform.parent = guide;
+
+        if (!colliderPortal.activeSelf)
+        {
+            colliderPortal.SetActive(true);
+        }
+        
         
         
     }
