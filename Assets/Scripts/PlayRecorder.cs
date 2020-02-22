@@ -10,6 +10,8 @@ public class PlayRecorder : MonoBehaviour
 
     //private AudioSource recorder;
     private float playDistance;
+
+    public float timeOffset;
     
     
     // Start is called before the first frame update
@@ -33,9 +35,9 @@ public class PlayRecorder : MonoBehaviour
         {
             //We play the tape if there is not any tape playing 
             //What if we change the tape??
-            if (!DialogueManager.Instance.audioSource.isPlaying)    // || DialogueManager.Instance.audioSource.clip != dialogueClip
+            if (DialogueManager.Instance.audioSource.clip == null)    // || DialogueManager.Instance.audioSource.clip != dialogueClip
             {
-                DialogueManager.Instance.BeginDialogue(dialogueClip);
+                DialogueManager.Instance.BeginDialogue(dialogueClip, timeOffset);
             }
             
         }

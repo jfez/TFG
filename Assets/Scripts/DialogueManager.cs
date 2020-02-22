@@ -52,6 +52,8 @@ public class DialogueManager : MonoBehaviour
 
     public bool subtitlesEnabled;
     public Toggle toggle;
+
+    private float timeOffset;
     
     void Awake()
     {
@@ -78,9 +80,10 @@ public class DialogueManager : MonoBehaviour
         
     }
 
-    public void BeginDialogue (AudioClip passedClip)
+    public void BeginDialogue (AudioClip passedClip, float timeOffset)
     {
         timer = 0f;
+        this.timeOffset = timeOffset;
         
         dialogueAudio = passedClip;
 
@@ -104,6 +107,7 @@ public class DialogueManager : MonoBehaviour
         //Get everything from the text file
 
         TextAsset temp = Resources.Load("Dialogues/" + dialogueAudio.name) as TextAsset;
+
         
         fileLines = temp.text.Split('\n');
 
@@ -120,8 +124,11 @@ public class DialogueManager : MonoBehaviour
             {
                 subtitleLines.Add(line);
             }
+
+            
         }
 
+        
         //Split out our subtitle elements
 
         for (int cnt = 0; cnt < subtitleLines.Count; cnt++)
@@ -170,7 +177,7 @@ public class DialogueManager : MonoBehaviour
         }
         
         //If the clip is over, we remove it from the audioSource
-        if (audioSource.clip != null && timer > audioSource.clip.length)
+        if (audioSource.clip != null && timer > audioSource.clip.length + timeOffset)
         {
             audioSource.clip = null;
         }

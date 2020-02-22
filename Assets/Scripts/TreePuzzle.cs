@@ -12,6 +12,7 @@ public class TreePuzzle : MonoBehaviour
     private Rigidbody rb;
 
     public GameObject colliderPortal;
+    public GameObject colliderStop;
     
     void Start()
     {
@@ -20,6 +21,7 @@ public class TreePuzzle : MonoBehaviour
         rb.useGravity = true;
         guide = GameObject.FindGameObjectWithTag("guide").transform;
         colliderPortal.SetActive(false);
+        colliderStop.SetActive(true);
         
         
     }
@@ -64,6 +66,7 @@ public class TreePuzzle : MonoBehaviour
         if (!colliderPortal.activeSelf)
         {
             colliderPortal.SetActive(true);
+            colliderStop.SetActive(false);
         }
         
         
