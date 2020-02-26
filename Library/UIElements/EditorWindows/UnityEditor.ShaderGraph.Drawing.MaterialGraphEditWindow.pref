@@ -23,6 +23,12 @@ MonoBehaviour:
   - __PanelContainer__rootVisualContainer__4fd026fd894088847afbf22151438580__MaterialGraphView__UnityEditor.Experimental.UIElements.GraphView.GraphView+PersistedSelection
   - __PanelContainer__rootVisualContainer__1a6ec5722aa518c47b3becf0ba96c61e__MaterialGraphView__UnityEditor.Experimental.UIElements.GraphView.GraphView+PersistedViewTransform
   - __PanelContainer__rootVisualContainer__1a6ec5722aa518c47b3becf0ba96c61e__MaterialGraphView__UnityEditor.Experimental.UIElements.GraphView.GraphView+PersistedSelection
+  - __PanelContainer__rootVisualContainer__cda512a04b278e94b8d9feee2d77ebef__MaterialGraphView__UnityEditor.Experimental.UIElements.GraphView.GraphView+PersistedViewTransform
+  - __PanelContainer__rootVisualContainer__cda512a04b278e94b8d9feee2d77ebef__MaterialGraphView__UnityEditor.Experimental.UIElements.GraphView.GraphView+PersistedSelection
+  - __PanelContainer__rootVisualContainer__5b97492ec2583794d955c4c682461f4d__MaterialGraphView__UnityEditor.Experimental.UIElements.GraphView.GraphView+PersistedViewTransform
+  - __PanelContainer__rootVisualContainer__5b97492ec2583794d955c4c682461f4d__MaterialGraphView__UnityEditor.Experimental.UIElements.GraphView.GraphView+PersistedSelection
+  - __PanelContainer__rootVisualContainer__6ae2e55dec1683045af6dfcaa813b4ee__MaterialGraphView__UnityEditor.Experimental.UIElements.GraphView.GraphView+PersistedViewTransform
+  - __PanelContainer__rootVisualContainer__6ae2e55dec1683045af6dfcaa813b4ee__MaterialGraphView__UnityEditor.Experimental.UIElements.GraphView.GraphView+PersistedSelection
   m_Values:
   - '{}'
   - '{}'
@@ -32,5 +38,11 @@ MonoBehaviour:
   - '{}'
   - '{}'
   - '{}'
-  - '{"position":{"x":497.279296875,"y":11.3773193359375,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}'
-  - '{"m_Version":54,"m_SelectedElementsArray":["34cfb052-3abf-4318-8a66-79d612c29871"]}'
+  - '{}'
+  - '{}'
+  - '{}'
+  - '{}'
+  - '{}'
+  - '{}'
+  - '{"position":{"x":2067.48486328125,"y":369.98577880859377,"z":0.0},"scale":{"x":0.8695651888847351,"y":0.8695651888847351,"z":1.0}}'
+  - '{"m_Version":75,"m_SelectedElementsArray":["f1d676f3-d2c1-4eda-aa86-6b9e0093ac7c","08da7a35-a739-4c82-99ed-8c6c6ff2c1d2"]}'
