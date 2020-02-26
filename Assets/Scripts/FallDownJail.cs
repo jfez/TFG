@@ -9,6 +9,7 @@ public class FallDownJail : MonoBehaviour
     void Start ()
     {
         jailAnimator = GetComponent<Animator>();
+        
     }
     
     void OnEnable () 

@@ -6,10 +6,16 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: jail 1
+  m_Name: maze
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: jail
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: maze
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -28,7 +34,7 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1101 &1101138817595883170
+--- !u!1101 &1101021407260572652
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37,10 +43,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: jail
+    m_ConditionEvent: maze
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 1102021696039971366}
+  m_DstState: {fileID: 1102350121806982216}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -53,14 +59,14 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1102 &1102021696039971366
+--- !u!1102 &1102350121806982216
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: jail
+  m_Name: maze
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -73,7 +79,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e044568fc2b5ea1498656911b02d6ae7, type: 2}
+  m_Motion: {fileID: 7400000, guid: 2dd6b698ef5db40429e155894e5baaeb, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -115,14 +121,14 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: 1102021696039971366}
-    m_Position: {x: 432, y: -36, z: 0}
-  - serializedVersion: 1
     m_State: {fileID: 1102402386178219056}
     m_Position: {x: 336, y: 96, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1102350121806982216}
+    m_Position: {x: 300, y: -24, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
-  - {fileID: 1101138817595883170}
+  - {fileID: 1101021407260572652}
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
