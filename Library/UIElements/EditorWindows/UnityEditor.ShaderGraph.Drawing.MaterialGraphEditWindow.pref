@@ -29,6 +29,14 @@ MonoBehaviour:
   - __PanelContainer__rootVisualContainer__5b97492ec2583794d955c4c682461f4d__MaterialGraphView__UnityEditor.Experimental.UIElements.GraphView.GraphView+PersistedSelection
   - __PanelContainer__rootVisualContainer__6ae2e55dec1683045af6dfcaa813b4ee__MaterialGraphView__UnityEditor.Experimental.UIElements.GraphView.GraphView+PersistedViewTransform
   - __PanelContainer__rootVisualContainer__6ae2e55dec1683045af6dfcaa813b4ee__MaterialGraphView__UnityEditor.Experimental.UIElements.GraphView.GraphView+PersistedSelection
+  - __PanelContainer__rootVisualContainer__61559bb5d649dcc49ad69bfcfb45b893__MaterialGraphView__UnityEditor.Experimental.UIElements.GraphView.GraphView+PersistedViewTransform
+  - __PanelContainer__rootVisualContainer__61559bb5d649dcc49ad69bfcfb45b893__MaterialGraphView__UnityEditor.Experimental.UIElements.GraphView.GraphView+PersistedSelection
+  - __PanelContainer__rootVisualContainer__97baf09f2ee3cdd42b10d812b26ef8b3__MaterialGraphView__UnityEditor.Experimental.UIElements.GraphView.GraphView+PersistedViewTransform
+  - __PanelContainer__rootVisualContainer__97baf09f2ee3cdd42b10d812b26ef8b3__MaterialGraphView__UnityEditor.Experimental.UIElements.GraphView.GraphView+PersistedSelection
+  - __PanelContainer__rootVisualContainer__f99fa7ce9bec8b442bdbcf461fbd8c05__MaterialGraphView__UnityEditor.Experimental.UIElements.GraphView.GraphView+PersistedViewTransform
+  - __PanelContainer__rootVisualContainer__f99fa7ce9bec8b442bdbcf461fbd8c05__MaterialGraphView__UnityEditor.Experimental.UIElements.GraphView.GraphView+PersistedSelection
+  - __PanelContainer__rootVisualContainer__dea3000a021cb2b4098049b707ae75b6__MaterialGraphView__UnityEditor.Experimental.UIElements.GraphView.GraphView+PersistedViewTransform
+  - __PanelContainer__rootVisualContainer__dea3000a021cb2b4098049b707ae75b6__MaterialGraphView__UnityEditor.Experimental.UIElements.GraphView.GraphView+PersistedSelection
   m_Values:
   - '{}'
   - '{}'
@@ -44,5 +52,13 @@ MonoBehaviour:
   - '{}'
   - '{}'
   - '{}'
-  - '{"position":{"x":2067.48486328125,"y":369.98577880859377,"z":0.0},"scale":{"x":0.8695651888847351,"y":0.8695651888847351,"z":1.0}}'
-  - '{"m_Version":75,"m_SelectedElementsArray":["f1d676f3-d2c1-4eda-aa86-6b9e0093ac7c","08da7a35-a739-4c82-99ed-8c6c6ff2c1d2"]}'
+  - '{}'
+  - '{}'
+  - '{}'
+  - '{}'
+  - '{}'
+  - '{}'
+  - '{}'
+  - '{}'
+  - '{"position":{"x":626.052490234375,"y":3.4239501953125,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}'
+  - '{"m_Version":0,"m_SelectedElementsArray":[]}'
