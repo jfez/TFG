@@ -78,6 +78,7 @@
      <Compile Include="Assets\Scripts\TriggerMaze.cs" />
      <Compile Include="Assets\Scripts\VoiceRecognition.cs" />
      <Compile Include="Assets\Shaders\Skybx Definitu\SunShape.cs" />
+     <Compile Include="Assets\Shaders\Toon Shader\ToonShaderLightSettings.cs" />
      <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
      <None Include="Assets\Glitch\Glitch.shader" />
      <None Include="Assets\Resources\Dialogues\nietzsche.txt" />
