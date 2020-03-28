@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityStandardAssets.Characters.FirstPerson;
 
 
 public class ManagerMenu : MonoBehaviour
 {
     public GameObject canvasMenu;
+    public GameObject panelPause;
+    public GameObject panelOptions;
+    public GameObject panelAskExit;
 
     public bool paused;
     private FirstPersonController firstPersonController;
@@ -31,6 +35,10 @@ public class ManagerMenu : MonoBehaviour
     void Start()
     {
         canvasMenu.SetActive(false);
+        panelPause.SetActive(false);
+        panelOptions.SetActive(false);
+        panelAskExit.SetActive(false);
+
         paused = false;
         Time.timeScale = 1f;
 
@@ -58,6 +66,7 @@ public class ManagerMenu : MonoBehaviour
         {
             paused = true;
             canvasMenu.SetActive(true);
+            panelPause.SetActive(true);
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -70,10 +79,11 @@ public class ManagerMenu : MonoBehaviour
 
         }
 
-        else
+        else if (panelPause.activeSelf)
         {
             paused = false;
             canvasMenu.SetActive(false);
+            panelPause.SetActive(false);
             Time.timeScale = 1f;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -90,5 +100,37 @@ public class ManagerMenu : MonoBehaviour
     {
         DialogueManager.Instance.subtitlesEnabled = newValue;
         PlayerPrefs.SetInt("subtitlesEnabled", newValue?1:0);
+    }
+
+    public void OpenOptions()
+    {
+        panelPause.SetActive(false);
+        panelOptions.SetActive(true);
+    }
+
+    public void CloseOptions()
+    {
+        panelPause.SetActive(true);
+        panelOptions.SetActive(false);
+    }
+
+    public void AskExit()
+    {
+        panelPause.SetActive(false);
+        panelAskExit.SetActive(true);
+
+    }
+
+    public void NoExit()
+    {
+        panelPause.SetActive(true);
+        panelAskExit.SetActive(false);
+
+    }
+
+    public void Exit()
+    {
+        SceneManager.LoadScene("Init");
+
     }
 }
