@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Windows.Speech;
 using UnityEngine.Audio;
 
@@ -49,7 +50,7 @@ public class VoiceRecognition : MonoBehaviour
             {
                 selectedDevice = Microphone.devices[0].ToString();
                 _audio.outputAudioMixerGroup = _mixerGroupMicrophone;
-                _audio.clip = Microphone.Start(selectedDevice, true, 10, AudioSettings.outputSampleRate);
+                _audio.clip = Microphone.Start(selectedDevice, true, 1, AudioSettings.outputSampleRate);    //10
                 _audio.Play();
             }
 
@@ -74,19 +75,37 @@ public class VoiceRecognition : MonoBehaviour
 
     void Update ()
     {
-        timer += Time.deltaTime;
+        Debug.Log(loudness + " y " + Microphone.IsRecording(selectedDevice));
         
-        loudness = GetAveragedVolume() * sensitivity;
-        
-        if (loudness > highestLoudness)
+        if (Microphone.IsRecording(selectedDevice))
         {
-            highestLoudness = loudness;
+            timer += Time.deltaTime;
+        
+            loudness = GetAveragedVolume() * sensitivity;
+            
+            
+            if (loudness > highestLoudness)
+            {
+                highestLoudness = loudness;
+            }
+
+            if (timer > 3f)
+            {
+                timer = 0f;
+                highestLoudness = loudness;
+            }
+        }
+        
+        
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Microphone.End(selectedDevice);
         }
 
-        if (timer > 3f)
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            timer = 0f;
-            highestLoudness = loudness;
+            SceneManager.LoadScene("Game");
         }
     }
 
