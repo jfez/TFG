@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
 using UnityEngine.UI;
-using UnityEngine.Audio;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -47,7 +46,6 @@ public class DialogueManager : MonoBehaviour
     //Singleton property
     public static DialogueManager Instance {get; private set;}
 
-    [HideInInspector]
     public AudioSource audioSource;
 
     private float timer;
@@ -56,8 +54,6 @@ public class DialogueManager : MonoBehaviour
     public Toggle toggle;
 
     private float timeOffset;
-
-    //public AudioMixer audioMixer;
     
     void Awake()
     {
@@ -67,9 +63,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         Instance = this;
-        //audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource = GetComponent<AudioSource>();
-        
+        audioSource = gameObject.AddComponent<AudioSource>();
 
         if (!PlayerPrefs.HasKey("subtitlesEnabled"))
         {
