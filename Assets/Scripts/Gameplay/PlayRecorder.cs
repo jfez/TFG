@@ -31,7 +31,7 @@ public class PlayRecorder : MonoBehaviour
     void OnMouseDown()
     {
         //If we want to limitate the distance to play the recorder
-        if (Vector3.Distance(Eyes.position, transform.position) < playDistance)
+        if (Vector3.Distance(Eyes.position, transform.position) < playDistance && !ManagerMenu.Instance.paused)
         {
             //We play the tape if there is not any tape playing 
             //What if we change the tape??

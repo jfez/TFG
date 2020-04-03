@@ -78,6 +78,7 @@
      <Compile Include="Assets\Scripts\Gameplay\TriggerMaze.cs" />
      <Compile Include="Assets\Scripts\Gameplay\VoiceRecognition.cs" />
      <Compile Include="Assets\Scripts\Init\InitManager.cs" />
+     <Compile Include="Assets\Scripts\Init\OptionsManager.cs" />
      <Compile Include="Assets\Scripts\Load\Load.cs" />
      <Compile Include="Assets\Shaders\Skybx Definitu\SunShape.cs" />
      <Compile Include="Assets\Shaders\Toon Shader\ToonShaderLightSettings.cs" />

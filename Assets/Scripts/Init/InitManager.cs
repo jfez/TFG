@@ -5,10 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class InitManager : MonoBehaviour
 {
+    public GameObject panelGeneral;
+    public GameObject panelOptions;
+    private OptionsManager optionsManager;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        panelGeneral.SetActive(true);
+        panelOptions.SetActive(false);
+        optionsManager = GetComponent<OptionsManager>();
     }
 
     // Update is called once per frame
@@ -24,12 +30,20 @@ public class InitManager : MonoBehaviour
 
     public void Options()
     {
-
+        panelGeneral.SetActive(false);
+        panelOptions.SetActive(true);
     }
 
     public void Exit()
     {
         Application.Quit();
+    }
+
+    public void BackGeneral()
+    {
+        panelGeneral.SetActive(true);
+        panelOptions.SetActive(false);
+        PlayerPrefs.SetFloat("volume", optionsManager.sliderVolume.value);
     }
 
 

@@ -46,6 +46,7 @@ public class DialogueManager : MonoBehaviour
     //Singleton property
     public static DialogueManager Instance {get; private set;}
 
+    [HideInInspector]
     public AudioSource audioSource;
 
     private float timer;
@@ -63,7 +64,8 @@ public class DialogueManager : MonoBehaviour
         }
 
         Instance = this;
-        audioSource = gameObject.AddComponent<AudioSource>();
+        //audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
 
         if (!PlayerPrefs.HasKey("subtitlesEnabled"))
         {

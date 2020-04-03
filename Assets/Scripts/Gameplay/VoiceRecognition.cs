@@ -49,7 +49,7 @@ public class VoiceRecognition : MonoBehaviour
             {
                 selectedDevice = Microphone.devices[0].ToString();
                 _audio.outputAudioMixerGroup = _mixerGroupMicrophone;
-                _audio.clip = Microphone.Start(selectedDevice, true, 10, AudioSettings.outputSampleRate);
+                _audio.clip = Microphone.Start(selectedDevice, true, 1, AudioSettings.outputSampleRate);   //10
                 _audio.Play();
             }
 
@@ -77,6 +77,7 @@ public class VoiceRecognition : MonoBehaviour
         timer += Time.deltaTime;
         
         loudness = GetAveragedVolume() * sensitivity;
+        //Debug.Log(loudness);
         
         if (loudness > highestLoudness)
         {
