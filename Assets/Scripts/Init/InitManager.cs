@@ -44,6 +44,9 @@ public class InitManager : MonoBehaviour
         panelGeneral.SetActive(true);
         panelOptions.SetActive(false);
         PlayerPrefs.SetFloat("volume", optionsManager.sliderVolume.value);
+        PlayerPrefs.SetInt("quality", optionsManager.dropdownQuality.value);
+        PlayerPrefs.SetInt("fullscreen", optionsManager.toggleFullscreen.isOn?1:0);
+
     }
 
 
