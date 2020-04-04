@@ -72,6 +72,7 @@
      <Compile Include="Assets\Scripts\Gameplay\PortalCamera.cs" />
      <Compile Include="Assets\Scripts\Gameplay\PortalTeleport.cs" />
      <Compile Include="Assets\Scripts\Gameplay\PortalTextureSetup.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\PruebaGuardarVoz.cs" />
      <Compile Include="Assets\Scripts\Gameplay\SimpleCameraController.cs" />
      <Compile Include="Assets\Scripts\Gameplay\testCube.cs" />
      <Compile Include="Assets\Scripts\Gameplay\TreePuzzle.cs" />

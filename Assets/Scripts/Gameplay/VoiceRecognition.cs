@@ -26,11 +26,16 @@ public class VoiceRecognition : MonoBehaviour
     public delegate void Action();
     public static event Action ScreamStop;
 
+    private bool stop;
+
+    public PruebaGuardarVoz prueba;
+
 
 
     void Start(){
         actions.Add("stop", Stop);
         
+        stop = false;
 
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray()); 
         keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;   
@@ -41,15 +46,18 @@ public class VoiceRecognition : MonoBehaviour
         highestLoudness = 0f;
         timer = 0f;
 
-        _audio = GetComponent<AudioSource>();
+        //_audio = GetComponent<AudioSource>();
+        _audio = gameObject.AddComponent<AudioSource>();
 
         if (useMicrophone)
         {
             if(Microphone.devices.Length > 0)
             {
                 selectedDevice = Microphone.devices[0].ToString();
+                //Debug.Log(selectedDevice);
                 _audio.outputAudioMixerGroup = _mixerGroupMicrophone;
                 _audio.clip = Microphone.Start(selectedDevice, true, 1, AudioSettings.outputSampleRate);   //10
+                _audio.loop = true;
                 _audio.Play();
             }
 
@@ -74,10 +82,14 @@ public class VoiceRecognition : MonoBehaviour
 
     void Update ()
     {
-        timer += Time.deltaTime;
         
+        
+        
+        
+        timer += Time.deltaTime;
+    
         loudness = GetAveragedVolume() * sensitivity;
-        //Debug.Log(loudness);
+        Debug.Log(loudness);
         
         if (loudness > highestLoudness)
         {
@@ -89,6 +101,9 @@ public class VoiceRecognition : MonoBehaviour
             timer = 0f;
             highestLoudness = loudness;
         }
+        
+        
+        
     }
 
     void RecognizedSpeech(PhraseRecognizedEventArgs speech){
@@ -99,6 +114,8 @@ public class VoiceRecognition : MonoBehaviour
     
     void Stop()
     {
+        stop = true;
+        //actions.Remove("stop");
         Debug.Log(highestLoudness);
 
         if (audioScreams.isPlaying)
@@ -106,12 +123,25 @@ public class VoiceRecognition : MonoBehaviour
             if (highestLoudness > 20)
             {
                 audioScreams.Stop();
+                
+                Microphone.End(null);
+                prueba.audioClip = _audio.clip;
+                Destroy(_audio);
+                _audio = gameObject.AddComponent<AudioSource>();
+                _audio.outputAudioMixerGroup = _mixerGroupMicrophone;
+                _audio.clip = Microphone.Start(selectedDevice, true, 1, AudioSettings.outputSampleRate);   //10
+                _audio.loop = true;
+                _audio.Play();
+                //_audio.Stop();
+                //_audio.outputAudioMixerGroup = _mixerGroupMaster;
+                //_audio.Play();
+                Debug.Log("PLAY");
                 if(ScreamStop != null)
                 {
                     ScreamStop();
                 }
                 
-                Destroy(gameObject);
+                //Destroy(gameObject);
             }
             
         }
