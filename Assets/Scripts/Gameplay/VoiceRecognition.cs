@@ -32,20 +32,8 @@ public class VoiceRecognition : MonoBehaviour
 
 
 
-    void Start(){
-        actions.Add("stop", Stop);
-        
-        stop = false;
-
-        keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray()); 
-        keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;   
-        keywordRecognizer.Start();
-
-        sensitivity = 100f;
-        loudness = 0f;
-        highestLoudness = 0f;
-        timer = 0f;
-
+    void Awake()
+    {
         //_audio = GetComponent<AudioSource>();
         _audio = gameObject.AddComponent<AudioSource>();
 
@@ -56,8 +44,10 @@ public class VoiceRecognition : MonoBehaviour
                 selectedDevice = Microphone.devices[0].ToString();
                 //Debug.Log(selectedDevice);
                 _audio.outputAudioMixerGroup = _mixerGroupMicrophone;
-                _audio.clip = Microphone.Start(selectedDevice, true, 1, AudioSettings.outputSampleRate);   //10
+                _audio.clip = Microphone.Start(selectedDevice, true, 10, AudioSettings.outputSampleRate);   //10
                 _audio.loop = true;
+                _audio.playOnAwake = false;
+                while(!(Microphone.GetPosition(selectedDevice) > 0)) {}
                 _audio.Play();
             }
 
@@ -73,6 +63,23 @@ public class VoiceRecognition : MonoBehaviour
             _audio.outputAudioMixerGroup = _mixerGroupMaster;
             _audio.clip = null;
         }
+    }
+    
+    void Start(){
+        actions.Add("stop", Stop);
+        
+        stop = false;
+
+        keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray()); 
+        keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;   
+        keywordRecognizer.Start();
+
+        sensitivity = 100f;
+        loudness = 0f;
+        highestLoudness = 0f;
+        timer = 0f;
+
+        
 
         
 
@@ -82,10 +89,6 @@ public class VoiceRecognition : MonoBehaviour
 
     void Update ()
     {
-        
-        
-        
-        
         timer += Time.deltaTime;
     
         loudness = GetAveragedVolume() * sensitivity;
@@ -100,6 +103,22 @@ public class VoiceRecognition : MonoBehaviour
         {
             timer = 0f;
             highestLoudness = loudness;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            Microphone.End(selectedDevice);
+            prueba.audioClip = _audio.clip;
+            Debug.Log("RESET");
+            _audio.Stop();
+            _audio.clip = null;
+            //Destroy(_audio);
+            //_audio = gameObject.AddComponent<AudioSource>();
+            //_audio.outputAudioMixerGroup = _mixerGroupMicrophone;
+            _audio.clip = Microphone.Start(selectedDevice, true, 10, AudioSettings.outputSampleRate);   //10
+            _audio.loop = true;
+            while(!(Microphone.GetPosition(selectedDevice) > 0)) {}
+            _audio.Play();
         }
         
         
@@ -124,18 +143,21 @@ public class VoiceRecognition : MonoBehaviour
             {
                 audioScreams.Stop();
                 
-                Microphone.End(null);
+                Microphone.End(selectedDevice);
+
+
                 prueba.audioClip = _audio.clip;
-                Destroy(_audio);
-                _audio = gameObject.AddComponent<AudioSource>();
-                _audio.outputAudioMixerGroup = _mixerGroupMicrophone;
-                _audio.clip = Microphone.Start(selectedDevice, true, 1, AudioSettings.outputSampleRate);   //10
+                _audio.Stop();
+                _audio.clip = null;
+                //Destroy(_audio);
+                //_audio = gameObject.AddComponent<AudioSource>();
+                //_audio.outputAudioMixerGroup = _mixerGroupMicrophone;
+                _audio.clip = Microphone.Start(selectedDevice, true, 10, AudioSettings.outputSampleRate);   //10
                 _audio.loop = true;
+                while(!(Microphone.GetPosition(selectedDevice) > 0)) {}
                 _audio.Play();
-                //_audio.Stop();
-                //_audio.outputAudioMixerGroup = _mixerGroupMaster;
-                //_audio.Play();
                 Debug.Log("PLAY");
+
                 if(ScreamStop != null)
                 {
                     ScreamStop();
