@@ -92,7 +92,7 @@ public class VoiceRecognition : MonoBehaviour
         timer += Time.deltaTime;
     
         loudness = GetAveragedVolume() * sensitivity;
-        Debug.Log(loudness);
+        //Debug.Log(loudness);
         
         if (loudness > highestLoudness)
         {
@@ -182,6 +182,11 @@ public class VoiceRecognition : MonoBehaviour
 
         }
         return a/256;
+    }
+
+    public float GetLoudness ()
+    {
+        return loudness;
     }
 
     

@@ -10,6 +10,8 @@ TagManager:
   - rama
   - guide
   - testTrigger
+  - VoiceRecognition
+  - RealTime
   layers:
   - Default
   - TransparentFX

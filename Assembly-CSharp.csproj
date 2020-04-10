@@ -63,8 +63,14 @@
      <Compile Include="Assets\SampleScenes\Scripts\ParticleSceneControls.cs" />
      <Compile Include="Assets\SampleScenes\Scripts\PlaceTargetWithMouse.cs" />
      <Compile Include="Assets\SampleScenes\Scripts\SlowMoButton.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Clock\hourLess.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Clock\hourMore.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Clock\minuteLess.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Clock\minuteMore.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Clock\realTime.cs" />
      <Compile Include="Assets\Scripts\Gameplay\DialogueManager.cs" />
      <Compile Include="Assets\Scripts\Gameplay\FallDownJail.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\ListenerSculpture.cs" />
      <Compile Include="Assets\Scripts\Gameplay\ManagerMenu.cs" />
      <Compile Include="Assets\Scripts\Gameplay\MazeEscape.cs" />
      <Compile Include="Assets\Scripts\Gameplay\MoveObject.cs" />

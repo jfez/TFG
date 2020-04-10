@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayRecorder : MonoBehaviour
 {
-    public Transform Eyes;
+    private Transform Eyes;
     public AudioClip dialogueClip;
     
 
@@ -18,6 +18,7 @@ public class PlayRecorder : MonoBehaviour
     void Start()
     {
         //recorder = GetComponent<AudioSource>();
+        Eyes = GameObject.FindGameObjectWithTag("MainCamera").transform;
         playDistance = 5f;
     }
 
