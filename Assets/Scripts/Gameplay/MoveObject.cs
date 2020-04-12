@@ -24,7 +24,7 @@ public class MoveObject : MonoBehaviour
 
     void OnMouseDown(){
         
-        if (Vector3.Distance(guide.position, transform.position) < grabDistance)
+        if (Vector3.Distance(guide.position, transform.position) < grabDistance && !ManagerMenu.Instance.paused)
         {
             transform.parent = guide.transform.transform;
         }

@@ -55,6 +55,10 @@
   <ItemGroup>
      <Compile Include="Assets\Glitch\ChangeCamera.cs" />
      <Compile Include="Assets\Glitch\Glitch.cs" />
+     <Compile Include="Assets\Maze\HuntAndKillMazeAlgorithm.cs" />
+     <Compile Include="Assets\Maze\MazeAlgorithm.cs" />
+     <Compile Include="Assets\Maze\MazeCell.cs" />
+     <Compile Include="Assets\Maze\MazeLoader.cs" />
      <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
      <Compile Include="Assets\SampleScenes\Menu\Scripts\PauseMenu.cs" />
      <Compile Include="Assets\SampleScenes\Menu\Scripts\SceneAndURLLoader.cs" />
@@ -74,6 +78,8 @@
      <Compile Include="Assets\Scripts\Gameplay\ManagerMenu.cs" />
      <Compile Include="Assets\Scripts\Gameplay\MazeEscape.cs" />
      <Compile Include="Assets\Scripts\Gameplay\MoveObject.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Photo Camera\PickUp.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Photo Camera\TakePhoto.cs" />
      <Compile Include="Assets\Scripts\Gameplay\PlayRecorder.cs" />
      <Compile Include="Assets\Scripts\Gameplay\PortalCamera.cs" />
      <Compile Include="Assets\Scripts\Gameplay\PortalTeleport.cs" />

@@ -87,6 +87,10 @@ public class TreePuzzle : MonoBehaviour
 
     void OnMouseDrag()
     {
-        transform.position = GetMouseAsWorldPoint() + mOffset;
+        if (!ManagerMenu.Instance.paused)
+        {
+            transform.position = GetMouseAsWorldPoint() + mOffset;
+        }
+        
     }
 }
