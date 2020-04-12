@@ -27,8 +27,7 @@ public class HuntAndKillMazeAlgorithm : MazeAlgorithm {
 	private void Kill() {
 		while (RouteStillAvailable (currentRow, currentColumn)) {
 			int direction = Random.Range (1, 5);
-			//int direction = ProceduralNumberGenerator.GetNextNumber ();
-			//Debug.Log(direction);
+			
 
 			if (direction == 1 && CellIsAvailable (currentRow - 1, currentColumn)) {
 				// North
@@ -142,7 +141,7 @@ public class HuntAndKillMazeAlgorithm : MazeAlgorithm {
 
 		while (!wallDestroyed) {
 			int direction = Random.Range (1, 5);
-			//int direction = ProceduralNumberGenerator.GetNextNumber ();
+			
 
 			if (direction == 1 && row > 0 && mazeCells [row - 1, column].visited) {
 				DestroyWallIfItExists (mazeCells [row, column].northWall);
