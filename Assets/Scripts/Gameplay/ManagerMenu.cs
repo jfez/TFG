@@ -18,6 +18,8 @@ public class ManagerMenu : MonoBehaviour
     //Singleton property
     public static ManagerMenu Instance {get; private set;}
 
+    private OptionsManager optionsManager;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -26,7 +28,7 @@ public class ManagerMenu : MonoBehaviour
         }
 
         Instance = this;
-        
+        optionsManager = GetComponent<OptionsManager>();
     }
 
     
@@ -112,6 +114,9 @@ public class ManagerMenu : MonoBehaviour
     {
         panelPause.SetActive(true);
         panelOptions.SetActive(false);
+        PlayerPrefs.SetFloat("volume", optionsManager.sliderVolume.value);
+        PlayerPrefs.SetInt("quality", optionsManager.dropdownQuality.value);
+        PlayerPrefs.SetInt("fullscreen", optionsManager.toggleFullscreen.isOn?1:0);
     }
 
     public void AskExit()
