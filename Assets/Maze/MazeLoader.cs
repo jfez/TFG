@@ -11,7 +11,8 @@ public class MazeLoader : MonoBehaviour {
 	public GameObject mazeParent;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		StartMaze();
 	}
 	
@@ -38,17 +39,29 @@ public class MazeLoader : MonoBehaviour {
 				mazeCells [r, c] .floor.transform.Rotate (Vector3.right, 90f);
 				mazeCells [r, c] .floor.transform.parent = mazeParent.transform;
 
-				if (c == 0) {
-					mazeCells[r,c].westWall = Instantiate (wall, new Vector3 (r*size, 0, (c*size) - (size/2f)) + mazeParent.transform.position, Quaternion.identity) as GameObject;
-					mazeCells [r, c].westWall.name = "West Wall " + r + "," + c;
-					mazeCells[r,c].westWall.transform.parent = mazeParent.transform;
+				if (c == 0) 
+				{
+					if (r != 0)
+					{
+						mazeCells[r,c].westWall = Instantiate (wall, new Vector3 (r*size, 0, (c*size) - (size/2f)) + mazeParent.transform.position, Quaternion.identity) as GameObject;
+						mazeCells [r, c].westWall.name = "West Wall " + r + "," + c;
+						mazeCells[r,c].westWall.transform.parent = mazeParent.transform;
+					}
+					
+					
 				}
 
-				mazeCells [r, c].eastWall = Instantiate (wall, new Vector3 (r*size, 0, (c*size) + (size/2f)) + mazeParent.transform.position, Quaternion.identity) as GameObject;
-				mazeCells [r, c].eastWall.name = "East Wall " + r + "," + c;
-				mazeCells [r, c].eastWall.transform.parent = mazeParent.transform;
+				if (c != mazeColumns - 1 || r != mazeRows - 1)
+				{
+					mazeCells [r, c].eastWall = Instantiate (wall, new Vector3 (r*size, 0, (c*size) + (size/2f)) + mazeParent.transform.position, Quaternion.identity) as GameObject;
+					mazeCells [r, c].eastWall.name = "East Wall " + r + "," + c;
+					mazeCells [r, c].eastWall.transform.parent = mazeParent.transform;
+				}
+				
+				
 
-				if (r == 0) {
+				if (r == 0) 
+				{
 					mazeCells [r, c].northWall = Instantiate (wall, new Vector3 ((r*size) - (size/2f), 0, c*size) + mazeParent.transform.position, Quaternion.identity) as GameObject;
 					mazeCells [r, c].northWall.name = "North Wall " + r + "," + c;
 					mazeCells [r, c].northWall.transform.Rotate (Vector3.up * 90f);

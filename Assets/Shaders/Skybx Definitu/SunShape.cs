@@ -8,6 +8,7 @@ public class SunShape : MonoBehaviour
     void Start()
     {
         Shader.SetGlobalVector("_SunDirection", transform.forward);
+        
     }
 
     // Update is called once per frame

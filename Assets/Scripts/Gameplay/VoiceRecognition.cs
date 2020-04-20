@@ -30,6 +30,8 @@ public class VoiceRecognition : MonoBehaviour
 
     public PruebaGuardarVoz prueba;
 
+    private float minimumLoudness;
+
 
 
     void Awake()
@@ -41,8 +43,8 @@ public class VoiceRecognition : MonoBehaviour
         {
             if(Microphone.devices.Length > 0)
             {
-                selectedDevice = Microphone.devices[0].ToString();
-                //Debug.Log(selectedDevice);
+                selectedDevice = Microphone.devices[Microphone.devices.Length - 1].ToString();
+                Debug.Log(Microphone.devices.Length + ", " + selectedDevice);
                 _audio.outputAudioMixerGroup = _mixerGroupMicrophone;
                 _audio.clip = Microphone.Start(selectedDevice, true, 10, AudioSettings.outputSampleRate);   //10
                 _audio.loop = true;
@@ -78,6 +80,7 @@ public class VoiceRecognition : MonoBehaviour
         loudness = 0f;
         highestLoudness = 0f;
         timer = 0f;
+        minimumLoudness = 45f;
 
         
 
@@ -139,7 +142,7 @@ public class VoiceRecognition : MonoBehaviour
 
         if (audioScreams.isPlaying)
         { 
-            if (highestLoudness > 20)
+            if (highestLoudness > minimumLoudness)
             {
                 audioScreams.Stop();
                 

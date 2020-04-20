@@ -42,7 +42,7 @@ public class ManagerMenu : MonoBehaviour
         panelAskExit.SetActive(false);
 
         paused = false;
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
 
         
         Cursor.lockState = CursorLockMode.Locked;
@@ -69,7 +69,7 @@ public class ManagerMenu : MonoBehaviour
             paused = true;
             canvasMenu.SetActive(true);
             panelPause.SetActive(true);
-            Time.timeScale = 0f;
+            //Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             if (DialogueManager.Instance.audioSource.isPlaying)
@@ -86,7 +86,7 @@ public class ManagerMenu : MonoBehaviour
             paused = false;
             canvasMenu.SetActive(false);
             panelPause.SetActive(false);
-            Time.timeScale = 1f;
+            //Time.timeScale = 1f;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             if (DialogueManager.Instance.audioSource.clip != null)
