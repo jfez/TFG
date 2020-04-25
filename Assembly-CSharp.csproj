@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\Gameplay\FallDownJail.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Global Time\GlobalTimeManager.cs" />
      <Compile Include="Assets\Scripts\Gameplay\ListenerSculpture.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Loop Manager\LoopManagerGame.cs" />
      <Compile Include="Assets\Scripts\Gameplay\ManagerMenu.cs" />
      <Compile Include="Assets\Scripts\Gameplay\MazeEscape.cs" />
      <Compile Include="Assets\Scripts\Gameplay\MoveObject.cs" />
@@ -94,6 +95,7 @@
      <Compile Include="Assets\Scripts\Gameplay\TriggerMaze.cs" />
      <Compile Include="Assets\Scripts\Gameplay\VoiceRecognition.cs" />
      <Compile Include="Assets\Scripts\Init\InitManager.cs" />
+     <Compile Include="Assets\Scripts\Init\LoopManager.cs" />
      <Compile Include="Assets\Scripts\Init\OptionsManager.cs" />
      <Compile Include="Assets\Scripts\Load\Load.cs" />
      <Compile Include="Assets\Shaders\Skybx Definitu\SunShape.cs" />
