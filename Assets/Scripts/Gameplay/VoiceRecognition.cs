@@ -36,7 +36,6 @@ public class VoiceRecognition : MonoBehaviour
 
     void Awake()
     {
-        //_audio = GetComponent<AudioSource>();
         _audio = gameObject.AddComponent<AudioSource>();
 
         if (useMicrophone)
@@ -46,7 +45,7 @@ public class VoiceRecognition : MonoBehaviour
                 selectedDevice = Microphone.devices[Microphone.devices.Length - 1].ToString();
                 Debug.Log(Microphone.devices.Length + ", " + selectedDevice);
                 _audio.outputAudioMixerGroup = _mixerGroupMicrophone;
-                _audio.clip = Microphone.Start(selectedDevice, true, 10, AudioSettings.outputSampleRate);   //10
+                _audio.clip = Microphone.Start(selectedDevice, true, 10, AudioSettings.outputSampleRate);
                 _audio.loop = true;
                 _audio.playOnAwake = false;
                 while(!(Microphone.GetPosition(selectedDevice) > 0)) {}
@@ -80,14 +79,7 @@ public class VoiceRecognition : MonoBehaviour
         loudness = 0f;
         highestLoudness = 0f;
         timer = 0f;
-        minimumLoudness = 45f;
-
-        
-
-        
-
-        
-        
+        minimumLoudness = 45f;      
     }
 
     void Update ()
@@ -123,15 +115,11 @@ public class VoiceRecognition : MonoBehaviour
             while(!(Microphone.GetPosition(selectedDevice) > 0)) {}
             _audio.Play();
         }
-        
-        
-        
     }
 
     void RecognizedSpeech(PhraseRecognizedEventArgs speech){
         //Debug.Log(speech.text);
         actions[speech.text].Invoke();
-
     }
     
     void Stop()
@@ -170,8 +158,6 @@ public class VoiceRecognition : MonoBehaviour
             }
             
         }
-        
-
     }
 
     float GetAveragedVolume () 
@@ -192,5 +178,4 @@ public class VoiceRecognition : MonoBehaviour
         return loudness;
     }
 
-    
 }

@@ -50,6 +50,7 @@ public class LoopManager : MonoBehaviour
             
         }
         
+        //Technical shortcut to play again even with the loop broken
         if (Input.GetKey(KeyCode.F1) && Input.GetKey(KeyCode.F2))
         {
             if (PlayerPrefs.GetInt("Loop") != 0)

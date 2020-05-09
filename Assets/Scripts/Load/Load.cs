@@ -16,18 +16,8 @@ public class Load : MonoBehaviour
         StartCoroutine(LoadAsyncOperation());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     IEnumerator LoadAsyncOperation()
     {
-        //yield return new WaitForSeconds(1f);
-
-
-
         //create an async operation
         AsyncOperation gameLevel = SceneManager.LoadSceneAsync("Game");
         

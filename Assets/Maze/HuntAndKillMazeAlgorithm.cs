@@ -8,8 +8,7 @@ public class HuntAndKillMazeAlgorithm : MazeAlgorithm {
 
 	private bool courseComplete = false;
 
-	public HuntAndKillMazeAlgorithm(MazeCell[,] mazeCells) : base(mazeCells) {
-	}
+	public HuntAndKillMazeAlgorithm(MazeCell[,] mazeCells) : base(mazeCells) {}
 
 	public override void CreateMaze () {
 		HuntAndKill ();

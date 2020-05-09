@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    //private const float _RATE = 44100.0f;
     
     private AudioClip dialogueAudio;
 
@@ -64,7 +63,6 @@ public class DialogueManager : MonoBehaviour
         }
 
         Instance = this;
-        //audioSource = gameObject.AddComponent<AudioSource>();
         audioSource = GetComponent<AudioSource>();
 
         if (!PlayerPrefs.HasKey("subtitlesEnabled"))
