@@ -12,6 +12,7 @@ TagManager:
   - testTrigger
   - VoiceRecognition
   - RealTime
+  - CamPortalsManagement
   layers:
   - Default
   - TransparentFX

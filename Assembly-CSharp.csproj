@@ -83,9 +83,10 @@
      <Compile Include="Assets\Scripts\Gameplay\Photo Camera\PickUp.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Photo Camera\TakePhoto.cs" />
      <Compile Include="Assets\Scripts\Gameplay\PlayRecorder.cs" />
-     <Compile Include="Assets\Scripts\Gameplay\PortalCamera.cs" />
-     <Compile Include="Assets\Scripts\Gameplay\PortalTeleport.cs" />
-     <Compile Include="Assets\Scripts\Gameplay\PortalTextureSetup.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Portals\CamerasPortalsManagement.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Portals\PortalCamera.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Portals\PortalTeleport.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Portals\PortalTextureSetup.cs" />
      <Compile Include="Assets\Scripts\Gameplay\PruebaGuardarVoz.cs" />
      <Compile Include="Assets\Scripts\Gameplay\SimpleCameraController.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Sun\TurnOffSun.cs" />
