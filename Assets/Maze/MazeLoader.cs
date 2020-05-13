@@ -19,14 +19,14 @@ public class MazeLoader : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.Return))
+		/*if (Input.GetKeyDown(KeyCode.Return))
 		{
-			StartMaze();
+			//StartMaze();
 			Debug.Log("RESTART");
 			string localPath = "Assets/" + mazeParent.name + ".prefab";
 			localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
-			PrefabUtility.SaveAsPrefabAssetAndConnect(gameObject, localPath, InteractionMode.UserAction);
-		}
+			PrefabUtility.SaveAsPrefabAssetAndConnect(mazeParent, localPath, InteractionMode.UserAction);
+		}*/
 	}
 
 	private void InitializeMaze() {
