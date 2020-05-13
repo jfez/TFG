@@ -29,12 +29,20 @@ public class CamerasPortalsManagement : MonoBehaviour
     {
         if (indexCamera + 2 > camerasPortals.Length)
         {
+            if (indexCamera - 3 >= 0)
+            {
+                camerasPortals[indexCamera-3].SetActive(false);
+            }
             camerasPortals[indexCamera].SetActive(false);
             camerasPortals[indexCamera-1].SetActive(true);
         }
 
         else
         {
+            if (indexCamera - 3 >= 0)
+            {
+                camerasPortals[indexCamera-3].SetActive(false);
+            }
             camerasPortals[indexCamera].SetActive(false);
             camerasPortals[indexCamera-1].SetActive(true);
             camerasPortals[indexCamera+2].SetActive(true);

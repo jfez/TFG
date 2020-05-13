@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
 public class MazeLoader : MonoBehaviour {
 	public int mazeRows, mazeColumns;
@@ -22,6 +23,9 @@ public class MazeLoader : MonoBehaviour {
 		{
 			StartMaze();
 			Debug.Log("RESTART");
+			string localPath = "Assets/" + mazeParent.name + ".prefab";
+			localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
+			PrefabUtility.SaveAsPrefabAssetAndConnect(gameObject, localPath, InteractionMode.UserAction);
 		}
 	}
 
