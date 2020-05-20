@@ -26,17 +26,15 @@ public class VoiceRecognition : MonoBehaviour
     public delegate void Action();
     public static event Action ScreamStop;
 
-    private bool stop;
-
     public PruebaGuardarVoz prueba;
 
     private float minimumLoudness;
-
-
+    private GameManager gameManager;
 
     void Awake()
     {
         _audio = gameObject.AddComponent<AudioSource>();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
         if (useMicrophone)
         {
@@ -69,7 +67,6 @@ public class VoiceRecognition : MonoBehaviour
     void Start(){
         actions.Add("stop", Stop);
         
-        stop = false;
 
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray()); 
         keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;   
@@ -99,22 +96,6 @@ public class VoiceRecognition : MonoBehaviour
             timer = 0f;
             highestLoudness = loudness;
         }
-
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            Microphone.End(selectedDevice);
-            prueba.audioClip = _audio.clip;
-            Debug.Log("RESET");
-            _audio.Stop();
-            _audio.clip = null;
-            //Destroy(_audio);
-            //_audio = gameObject.AddComponent<AudioSource>();
-            //_audio.outputAudioMixerGroup = _mixerGroupMicrophone;
-            _audio.clip = Microphone.Start(selectedDevice, true, 10, AudioSettings.outputSampleRate);   //10
-            _audio.loop = true;
-            while(!(Microphone.GetPosition(selectedDevice) > 0)) {}
-            _audio.Play();
-        }
     }
 
     void RecognizedSpeech(PhraseRecognizedEventArgs speech){
@@ -124,37 +105,30 @@ public class VoiceRecognition : MonoBehaviour
     
     void Stop()
     {
-        stop = true;
-        //actions.Remove("stop");
-        Debug.Log(highestLoudness);
-
         if (audioScreams.isPlaying)
         { 
+            Debug.Log(highestLoudness);
+            
             if (highestLoudness > minimumLoudness)
             {
                 audioScreams.Stop();
                 
                 Microphone.End(selectedDevice);
 
-
                 prueba.audioClip = _audio.clip;
                 _audio.Stop();
                 _audio.clip = null;
-                //Destroy(_audio);
-                //_audio = gameObject.AddComponent<AudioSource>();
-                //_audio.outputAudioMixerGroup = _mixerGroupMicrophone;
                 _audio.clip = Microphone.Start(selectedDevice, true, 10, AudioSettings.outputSampleRate);   //10
                 _audio.loop = true;
                 while(!(Microphone.GetPosition(selectedDevice) > 0)) {}
                 _audio.Play();
-                Debug.Log("PLAY");
+
+                gameManager.OpenSecondPortal();
 
                 if(ScreamStop != null)
                 {
                     ScreamStop();
                 }
-                
-                //Destroy(gameObject);
             }
             
         }

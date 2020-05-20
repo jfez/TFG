@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PortalTeleport : MonoBehaviour
 {
-    //public Transform player;
     public CharacterController player;
 	public Transform reciever;
 
@@ -12,11 +11,12 @@ public class PortalTeleport : MonoBehaviour
 	private AudioSource audiotp;
 	private CamerasPortalsManagement camerasPortalsManagement;
 
-	//public Transform ownGFX;
-	//public Transform otherGFX;
+	private GameManager gameManager;
+
 
 	void Start()
 	{
+		gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 		audiotp = GetComponent<AudioSource>();
 		camerasPortalsManagement = GameObject.FindGameObjectWithTag("CamPortalsManagement").GetComponent<CamerasPortalsManagement>();
 	}
@@ -43,9 +43,6 @@ public class PortalTeleport : MonoBehaviour
                 player.transform.position = reciever.position + positionOffset;
                 player.enabled = true;
 
-				//ownGFX.Rotate (0,0,180);
-				//otherGFX.Rotate (0,0,180);
-
 				playerIsOverlapping = false;
 			}
 		}
@@ -57,6 +54,18 @@ public class PortalTeleport : MonoBehaviour
 		{
 			playerIsOverlapping = true;
 			audiotp.Play();
+
+			if (GameManager.indexIsland == 1)
+			{
+				gameManager.ActivateScreams();
+			}
+
+			else if (GameManager.indexIsland == 2 && !gameManager.GetIsNight())
+			{
+				gameManager.ActivatePhysicSun();
+			}
+
+			GameManager.indexIsland++;
 		}
 	}
 

@@ -9,13 +9,10 @@ public class GlobalTimeManager : MonoBehaviour
     public Color newSkyColor;
     public Color newHorizonColor;
     public Color newCloudsColor;
-    public GameObject physicalSun;
+    public realTime realTimeManager;
     
     public AudioClip[] belllsClip;
     private float [] timingClips;
-
-
-
 
     private Color initSkyColor;
     private Color initHorizonColor;
@@ -34,11 +31,14 @@ public class GlobalTimeManager : MonoBehaviour
 
     private int indexBells;
     private float executionTimeMins;
+    private GameManager gameManager;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        
         initSkyColor = skyboxObject.GetComponent<MeshRenderer>().material.GetColor("_SkyColor");
         initHorizonColor = skyboxObject.GetComponent<MeshRenderer>().material.GetColor("_HorizonColor");
         initCloudsColor = skyboxObject.GetComponent<MeshRenderer>().material.GetColor("_NubesColor");
@@ -64,8 +64,6 @@ public class GlobalTimeManager : MonoBehaviour
         isNight = false;
         indexBells = 0;
         executionTimeMins = 13f;
-
-        physicalSun.SetActive(false);
     }
 
     // Update is called once per frame
@@ -73,42 +71,29 @@ public class GlobalTimeManager : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (lerpValue < 1 && !isNight)
+        if (!isNight)
         {
-            lerpValue = timer / (executionTimeMins * 60);
-            //Debug.Log(lerpValue);
+            if (lerpValue < 1)
+            {
+                lerpValue = timer / (executionTimeMins * 60);
 
-            lerpedSkyColor = Color.Lerp(initSkyColor, newSkyColor, lerpValue);
-            lerpedHorizonColor = Color.Lerp(initHorizonColor, newHorizonColor, lerpValue);
-            lerpedCloudsColor = Color.Lerp(initCloudsColor, newCloudsColor, lerpValue);
-            
-            skyboxObject.GetComponent<MeshRenderer>().material.SetColor("_SkyColor", lerpedSkyColor);
-            skyboxObject.GetComponent<MeshRenderer>().material.SetColor("_HorizonColor", lerpedHorizonColor);
-            skyboxObject.GetComponent<MeshRenderer>().material.SetColor("_NubesColor", lerpedCloudsColor);
-        }
-        
-        
-        /*
-        if (Input.GetKey(KeyCode.F2) && lerpValue <= 1)
-        {
-            lerpValue += 0.01f;
+                lerpedSkyColor = Color.Lerp(initSkyColor, newSkyColor, lerpValue);
+                lerpedHorizonColor = Color.Lerp(initHorizonColor, newHorizonColor, lerpValue);
+                lerpedCloudsColor = Color.Lerp(initCloudsColor, newCloudsColor, lerpValue);
+                
+                skyboxObject.GetComponent<MeshRenderer>().material.SetColor("_SkyColor", lerpedSkyColor);
+                skyboxObject.GetComponent<MeshRenderer>().material.SetColor("_HorizonColor", lerpedHorizonColor);
+                skyboxObject.GetComponent<MeshRenderer>().material.SetColor("_NubesColor", lerpedCloudsColor);
+            }
 
-            Debug.Log(lerpValue);
+            else
+            {
+                isNight = true;
+                realTimeManager.onTime = false;
+                gameManager.DeactivatePhysicSun();
+            }
             
-            lerpedSkyColor = Color.Lerp(initSkyColor, newSkyColor, lerpValue);
-            lerpedHorizonColor = Color.Lerp(initHorizonColor, newHorizonColor, lerpValue);
-            lerpedCloudsColor = Color.Lerp(initCloudsColor, newCloudsColor, lerpValue);
             
-            skyboxObject.GetComponent<MeshRenderer>().material.SetColor("_SkyColor", lerpedSkyColor);
-            skyboxObject.GetComponent<MeshRenderer>().material.SetColor("_HorizonColor", lerpedHorizonColor);
-            skyboxObject.GetComponent<MeshRenderer>().material.SetColor("_NubesColor", lerpedCloudsColor);
-            
-        }
-        */
-
-        if (Input.GetKey(KeyCode.F3))
-        {
-            physicalSun.SetActive(true);
         }
 
         if (timer > timingClips[indexBells])

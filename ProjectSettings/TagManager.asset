@@ -13,6 +13,7 @@ TagManager:
   - VoiceRecognition
   - RealTime
   - CamPortalsManagement
+  - GameManager
   layers:
   - Default
   - TransparentFX

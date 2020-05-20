@@ -74,6 +74,7 @@
      <Compile Include="Assets\Scripts\Gameplay\Clock\realTime.cs" />
      <Compile Include="Assets\Scripts\Gameplay\DialogueManager.cs" />
      <Compile Include="Assets\Scripts\Gameplay\FallDownJail.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\GameManager\GameManager.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Global Time\GlobalTimeManager.cs" />
      <Compile Include="Assets\Scripts\Gameplay\ListenerSculpture.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Loop Manager\LoopManagerGame.cs" />

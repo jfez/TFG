@@ -55,12 +55,10 @@ public class TreePuzzle : MonoBehaviour
         // Store offset = gameobject world pos - mouse world pos
         mOffset = transform.position - GetMouseAsWorldPoint();
         
-        //item.GetComponent<Rigidbody>().useGravity = false;
+
         rb.isKinematic = true;
         rb.useGravity = false;
-        
-        //transform.position = guide.transform.position;
-        //transform.rotation = guide.transform.rotation;
+
         transform.parent = guide;
 
         if (!colliderPortal.activeSelf)
@@ -73,16 +71,11 @@ public class TreePuzzle : MonoBehaviour
         
     }
 
-    void OnMouseUp(){
-        //item.GetComponent<Rigidbody>().useGravity = true;
-        //rb.isKinematic = true;
+    void OnMouseUp()
+    {
         rb.isKinematic = false;
         rb.useGravity = true;
         transform.parent = null;
-        //transform.position = guide.position;
-        
-        
-        
     }
 
     void OnMouseDrag()
