@@ -14,7 +14,10 @@ public class TakePhoto : MonoBehaviour
     public GameObject canvasPhoto;
     public GameObject photoPrefab;
 
-    private bool focus;
+    [HideInInspector]
+    public bool focus;
+    [HideInInspector]
+    public bool keyPicked;
     
     private string finalPath;
     private Sprite last_screenshot_save;
@@ -33,6 +36,7 @@ public class TakePhoto : MonoBehaviour
         canvasPhoto.SetActive(false);
         guide = GameObject.FindGameObjectWithTag("Player").transform;
         cameraAnimator = cameraObject.GetComponent<Animator>();
+        keyPicked = false;
     }
 
     // Update is called once per frame
@@ -70,6 +74,8 @@ public class TakePhoto : MonoBehaviour
 
             if (focus && Input.GetMouseButtonDown(0))
             {
+                keyPicked = false;
+                Debug.Log("SIN LLAVE");
                 StartCoroutine(TakingPhoto());
             }
         }
@@ -77,7 +83,6 @@ public class TakePhoto : MonoBehaviour
 
     private IEnumerator TakingPhoto()
     {
-        Debug.Log("PHOTO");
         string fileName = System.DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
 
         finalPath = (Application.persistentDataPath + "/Screenshot " + fileName + ".png");
@@ -85,10 +90,6 @@ public class TakePhoto : MonoBehaviour
         ScreenCapture.CaptureScreenshot(finalPath);
         yield return new WaitForSeconds(0.1f);
         last_screenshot_save = LoadSprite(finalPath);
-        
-        
-        
-        Debug.Log("changing");
         
         if (photoObject == null)
         {

@@ -11,7 +11,8 @@ public class GlobalTimeManager : MonoBehaviour
     public Color newCloudsColor;
     public GameObject physicalSun;
     
-    public AudioClip firstBelllsClip;
+    public AudioClip[] belllsClip;
+    private float [] timingClips;
 
 
 
@@ -32,6 +33,7 @@ public class GlobalTimeManager : MonoBehaviour
     public bool isNight;
 
     private int indexBells;
+    private float executionTimeMins;
 
 
     // Start is called before the first frame update
@@ -41,11 +43,27 @@ public class GlobalTimeManager : MonoBehaviour
         initHorizonColor = skyboxObject.GetComponent<MeshRenderer>().material.GetColor("_HorizonColor");
         initCloudsColor = skyboxObject.GetComponent<MeshRenderer>().material.GetColor("_NubesColor");
         audioSource = GetComponent<AudioSource>();
+        timingClips = new float[belllsClip.Length];
+
+        for (int i = 0; i < timingClips.Length; i++)
+        {
+            if (i == 0)
+            {
+                timingClips[i] = 60;
+            }
+
+            else
+            {
+                timingClips[i] = 60 + (3*60*i);
+            }
+            
+        }
 
         lerpValue = 0;
         timer = 0;
         isNight = false;
         indexBells = 0;
+        executionTimeMins = 13f;
 
         physicalSun.SetActive(false);
     }
@@ -57,7 +75,7 @@ public class GlobalTimeManager : MonoBehaviour
 
         if (lerpValue < 1 && !isNight)
         {
-            lerpValue = timer / 25;
+            lerpValue = timer / (executionTimeMins * 60);
             //Debug.Log(lerpValue);
 
             lerpedSkyColor = Color.Lerp(initSkyColor, newSkyColor, lerpValue);
@@ -93,12 +111,11 @@ public class GlobalTimeManager : MonoBehaviour
             physicalSun.SetActive(true);
         }
 
-        if (timer > 5 && indexBells < 1)
+        if (timer > timingClips[indexBells])
         {
-            audioSource.clip = firstBelllsClip;
+            audioSource.clip = belllsClip[indexBells];
             audioSource.Play();
             indexBells++;
-
         }
     }
 

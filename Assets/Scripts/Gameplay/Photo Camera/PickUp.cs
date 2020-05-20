@@ -31,8 +31,8 @@ public class PickUp : MonoBehaviour
         {
             
             transform.parent = guide.transform.transform;
-            transform.localPosition = new Vector3 (0.5f,0.2f,1);
-            transform.localRotation = Quaternion.identity;
+            transform.localPosition = new Vector3 (0.5f,0.45f,1);
+            transform.localRotation = Quaternion.Euler(-90, 0, 0);
             takePhoto.cameraPicked = true;
             
             

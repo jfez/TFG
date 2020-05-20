@@ -80,6 +80,8 @@
      <Compile Include="Assets\Scripts\Gameplay\ManagerMenu.cs" />
      <Compile Include="Assets\Scripts\Gameplay\MazeEscape.cs" />
      <Compile Include="Assets\Scripts\Gameplay\MoveObject.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Photo Camera\OpenDoor.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Photo Camera\PhotoKey.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Photo Camera\PickUp.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Photo Camera\TakePhoto.cs" />
      <Compile Include="Assets\Scripts\Gameplay\PlayRecorder.cs" />
