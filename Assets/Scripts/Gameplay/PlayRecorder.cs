@@ -36,9 +36,16 @@ public class PlayRecorder : MonoBehaviour
         {
             //We play the tape if there is not any tape playing 
             //What if we change the tape??
-            if (DialogueManager.Instance.audioSource.clip == null)    // || DialogueManager.Instance.audioSource.clip != dialogueClip
+            if (DialogueManager.Instance.audioSource.clip == null || DialogueManager.Instance.audioSource.clip != dialogueClip)    // || DialogueManager.Instance.audioSource.clip != dialogueClip
             {
+                DialogueManager.Instance.transform.position = transform.position;
                 DialogueManager.Instance.BeginDialogue(dialogueClip, timeOffset);
+            }
+
+            else if (DialogueManager.Instance.audioSource.clip == dialogueClip)
+            {
+                DialogueManager.Instance.audioSource.Stop();
+                DialogueManager.Instance.audioSource.clip = null;
             }
             
         }

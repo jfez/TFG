@@ -38,7 +38,7 @@ public class DialogueManager : MonoBehaviour
     //GUI
     private GUIStyle subtitlesStyle = new GUIStyle();
     private float scaleRatio = 1.5f;
-    private float heightRatio = 0.0225f;
+    private float heightRatio = 0.04f;    //0.0225f;
 
 
     
@@ -171,7 +171,7 @@ public class DialogueManager : MonoBehaviour
     void Update ()
     {
         //The timer is on only if we have a clip ready
-        if (audioSource.clip != null)
+        if (audioSource.clip != null && !ManagerMenu.Instance.paused)
         {
             timer += Time.deltaTime;
         }
