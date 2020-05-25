@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    
     private AudioClip dialogueAudio;
 
     private string[] fileLines;
@@ -38,7 +37,10 @@ public class DialogueManager : MonoBehaviour
     //GUI
     private GUIStyle subtitlesStyle = new GUIStyle();
     private float scaleRatio = 1.5f;
-    private float heightRatio = 0.04f;    //0.0225f;
+    private float heightRatio = 0.04f;
+
+    [HideInInspector]
+    public AudioKind.AudioKindEnum audioKindEnum;
 
 
     
@@ -77,11 +79,14 @@ public class DialogueManager : MonoBehaviour
         }
         
         toggle.isOn = subtitlesEnabled;
+
+        audioKindEnum = AudioKind.AudioKindEnum.None;
         
     }
 
-    public void BeginDialogue (AudioClip passedClip, float timeOffset)
+    public void BeginDialogue (AudioClip passedClip, float timeOffset, AudioKind.AudioKindEnum audioKind)
     {
+        
         timer = 0f;
         this.timeOffset = timeOffset;
         
@@ -164,6 +169,11 @@ public class DialogueManager : MonoBehaviour
         //Set and play the audioclip
         audioSource.clip = dialogueAudio;
         audioSource.Play();
+
+        audioKindEnum = audioKind;
+        
+        
+        
         
         
     }
@@ -180,6 +190,7 @@ public class DialogueManager : MonoBehaviour
         if (audioSource.clip != null && timer > audioSource.clip.length + timeOffset)
         {
             audioSource.clip = null;
+            audioKindEnum = AudioKind.AudioKindEnum.None;
         }
     }
     

@@ -12,12 +12,15 @@ public class PlayRecorder : MonoBehaviour
     private float playDistance;
 
     public float timeOffset;
+
+    private AudioSource scratchAudioSource;
     
     
     // Start is called before the first frame update
     void Start()
     {
         //recorder = GetComponent<AudioSource>();
+        scratchAudioSource = GameObject.FindGameObjectWithTag("Scratch").GetComponent<AudioSource>();
         Eyes = GameObject.FindGameObjectWithTag("MainCamera").transform;
         playDistance = 5f;
     }
@@ -34,12 +37,19 @@ public class PlayRecorder : MonoBehaviour
         //If we want to limitate the distance to play the recorder
         if (Vector3.Distance(Eyes.position, transform.position) < playDistance && !ManagerMenu.Instance.paused)
         {
-            //We play the tape if there is not any tape playing 
-            //What if we change the tape??
-            if (DialogueManager.Instance.audioSource.clip == null || DialogueManager.Instance.audioSource.clip != dialogueClip)    // || DialogueManager.Instance.audioSource.clip != dialogueClip
+            
+            if (DialogueManager.Instance.audioSource.clip != null && 
+            (DialogueManager.Instance.audioKindEnum == AudioKind.AudioKindEnum.Time || DialogueManager.Instance.audioKindEnum == AudioKind.AudioKindEnum.Event))
+            {
+                return;
+            }
+            
+            else if (DialogueManager.Instance.audioSource.clip == null || DialogueManager.Instance.audioSource.clip != dialogueClip)
             {
                 DialogueManager.Instance.transform.position = transform.position;
-                DialogueManager.Instance.BeginDialogue(dialogueClip, timeOffset);
+                scratchAudioSource.gameObject.transform.position = transform.position;
+                DialogueManager.Instance.audioSource.spatialBlend = 1f;
+                DialogueManager.Instance.BeginDialogue(dialogueClip, timeOffset, AudioKind.AudioKindEnum.Voxophone);
             }
 
             else if (DialogueManager.Instance.audioSource.clip == dialogueClip)
