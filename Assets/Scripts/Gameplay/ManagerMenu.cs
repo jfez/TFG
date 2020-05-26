@@ -11,6 +11,7 @@ public class ManagerMenu : MonoBehaviour
     public GameObject panelPause;
     public GameObject panelOptions;
     public GameObject panelAskExit;
+    public GameManager gameManager;
 
     public bool paused;
     private FirstPersonController firstPersonController;
@@ -41,7 +42,7 @@ public class ManagerMenu : MonoBehaviour
         panelOptions.SetActive(false);
         panelAskExit.SetActive(false);
 
-        paused = false;
+        paused = false;      //true
         //Time.timeScale = 1f;
 
         
@@ -56,7 +57,7 @@ public class ManagerMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape) && gameManager.presentationDone)
         {
             Pause();
         }
