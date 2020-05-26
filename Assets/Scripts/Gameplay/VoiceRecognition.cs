@@ -31,6 +31,12 @@ public class VoiceRecognition : MonoBehaviour
     private float minimumLoudness;
     private GameManager gameManager;
 
+    private AudioSource scratchAudioSource;
+
+    public AudioClip eventClip;
+    public AudioClip strongerClip;
+    private float timeOffset;
+
     void Awake()
     {
         _audio = gameObject.AddComponent<AudioSource>();
@@ -66,6 +72,9 @@ public class VoiceRecognition : MonoBehaviour
     
     void Start(){
         actions.Add("stop", Stop);
+
+        scratchAudioSource = GameObject.FindGameObjectWithTag("Scratch").GetComponent<AudioSource>();
+        timeOffset = 2f;
         
 
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray()); 
@@ -129,6 +138,36 @@ public class VoiceRecognition : MonoBehaviour
                 {
                     ScreamStop();
                 }
+
+                if (DialogueManager.Instance.audioKindEnum == AudioKind.AudioKindEnum.Time)
+                {
+                    scratchAudioSource.gameObject.GetComponent<ScratchManager>().ScratchTime();
+                }
+
+                else if (DialogueManager.Instance.audioKindEnum == AudioKind.AudioKindEnum.Voxophone)
+                {
+                    scratchAudioSource.gameObject.GetComponent<ScratchManager>().ScratchVoxophone();
+                }
+
+                DialogueManager.Instance.audioSource.spatialBlend = 0f;
+                DialogueManager.Instance.BeginDialogue(eventClip, timeOffset, AudioKind.AudioKindEnum.Event);
+                GameManager.Instance.finishAudios = true;
+            }
+
+            else
+            {
+                if (DialogueManager.Instance.audioKindEnum == AudioKind.AudioKindEnum.Time)
+                {
+                    scratchAudioSource.gameObject.GetComponent<ScratchManager>().ScratchTime();
+                }
+
+                else if (DialogueManager.Instance.audioKindEnum == AudioKind.AudioKindEnum.Voxophone)
+                {
+                    scratchAudioSource.gameObject.GetComponent<ScratchManager>().ScratchVoxophone();
+                }
+
+                DialogueManager.Instance.audioSource.spatialBlend = 0f;
+                DialogueManager.Instance.BeginDialogue(strongerClip, timeOffset, AudioKind.AudioKindEnum.Event);
             }
             
         }

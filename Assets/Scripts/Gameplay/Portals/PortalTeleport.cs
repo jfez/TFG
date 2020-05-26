@@ -55,17 +55,18 @@ public class PortalTeleport : MonoBehaviour
 			playerIsOverlapping = true;
 			audiotp.Play();
 
-			if (GameManager.indexIsland == 1)
+			if (GameManager.Instance.indexIsland == 1)
 			{
 				gameManager.ActivateScreams();
 			}
 
-			else if (GameManager.indexIsland == 2 && !gameManager.GetIsNight())
+			else if (GameManager.Instance.indexIsland == 2 && !gameManager.GetIsNight())
 			{
 				gameManager.ActivatePhysicSun();
 			}
 
-			GameManager.indexIsland++;
+			GameManager.Instance.indexIsland++;
+			GameManager.Instance.indexInsideIsland = 1;
 		}
 	}
 

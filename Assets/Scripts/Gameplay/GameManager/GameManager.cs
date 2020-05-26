@@ -6,7 +6,13 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class GameManager : MonoBehaviour
 {
-    public static int indexIsland;
+    //Singleton property
+    public static GameManager Instance {get; private set;}
+    
+    [HideInInspector]
+    public int indexIsland;
+    [HideInInspector]
+    public int indexInsideIsland;
 
     public AudioSource audioScreams;
     public GameObject colliderSecondPortal;
@@ -32,16 +38,45 @@ public class GameManager : MonoBehaviour
 
     public CharacterController player;
     public Transform beginPoint;
+
+    public AudioClip[] arrayAudiosCorridor;
+    public float[] arrayTimesCorridor;
+
+    public AudioClip[] arrayAudiosInitialIsland;
+    public float[] arrayTimesInitialIsland;
+    public AudioClip[] arrayAudiosStatuesIsland;
+    public float[] arrayTimesStatuesIsland;
+    
+    [HideInInspector]
+    public float timerAudios;
+    [HideInInspector]
+    public int indexAudio;
+    [HideInInspector]
+    public bool finishAudios;
+    
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        Instance = this;
+    }
     
     // Start is called before the first frame update
     void Start()
     {
         indexIsland = 1;
+        indexInsideIsland = 1;
+        indexAudio = 0;
         physicalSun.SetActive(false);
 
         timer = 0;
+        timerAudios = 0;
         fadeOut = true;            //false
         presentationDone = true;   //false
+        finishAudios = false;
 
         BSOAudioSource.clip = initClip;
         //BSOAudioSource.Play();
@@ -51,7 +86,7 @@ public class GameManager : MonoBehaviour
         firstPersonController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
 
         player.enabled = false;
-        //player.transform.position = beginPoint.position;
+        player.transform.position = beginPoint.position;
         player.enabled = true;
 
 
@@ -74,6 +109,99 @@ public class GameManager : MonoBehaviour
                 fadeOut = true;
             }
         }*/
+
+        if (!ManagerMenu.Instance.paused && !finishAudios && presentationDone)
+        {
+            timerAudios += Time.deltaTime;
+            //Debug.Log(timerAudios);
+        }
+
+        if (indexIsland == 1 && indexInsideIsland == 1)     //corridor
+        {
+            if(timerAudios > arrayTimesCorridor[indexAudio])
+            {
+                DialogueManager.Instance.audioSource.spatialBlend = 0f;
+                DialogueManager.Instance.BeginDialogue(arrayAudiosCorridor[indexAudio], 2f, AudioKind.AudioKindEnum.Time);
+                if (indexAudio < arrayTimesCorridor.Length - 1)
+                {
+                    indexAudio++;
+                }
+
+                else
+                {
+                    finishAudios = true;
+                    timerAudios = 0;
+                }
+                
+            }
+
+            if (DialogueManager.Instance.audioKindEnum != AudioKind.AudioKindEnum.None)
+            {
+                timerAudios = 0;
+            }
+        }
+
+        else if (indexIsland == 1 && indexInsideIsland == 2)        //initial island
+        {
+            if(timerAudios > arrayTimesInitialIsland[indexAudio])
+            {
+                DialogueManager.Instance.audioSource.spatialBlend = 0f;
+                DialogueManager.Instance.BeginDialogue(arrayAudiosInitialIsland[indexAudio], 2f, AudioKind.AudioKindEnum.Time);
+                if (indexAudio < arrayTimesInitialIsland.Length - 1)
+                {
+                    indexAudio++;
+                }
+
+                else
+                {
+                    finishAudios = true;
+                    timerAudios = 0;
+                }
+                
+            }
+
+            if (DialogueManager.Instance.audioKindEnum != AudioKind.AudioKindEnum.None)
+            {
+                timerAudios = 0;
+            }
+        }
+
+        else if (indexIsland == 2 && indexInsideIsland == 1)    //statues island 
+        {
+            if(timerAudios > arrayTimesStatuesIsland[indexAudio])
+            {
+                DialogueManager.Instance.audioSource.spatialBlend = 0f;
+                DialogueManager.Instance.BeginDialogue(arrayAudiosStatuesIsland[indexAudio], 2f, AudioKind.AudioKindEnum.Time);
+                
+                indexAudio = Random.Range(1,4);
+                
+            }
+
+            if (DialogueManager.Instance.audioKindEnum != AudioKind.AudioKindEnum.None)
+            {
+                timerAudios = 0;
+            }
+        }
+
+        else if (indexIsland == 3)
+        {
+            if (GetIsNight() && indexInsideIsland != 2)
+            {
+                indexInsideIsland = 2;
+            }
+
+            if (indexInsideIsland == 1)
+            {
+                //audios DÍA
+            }
+
+            else
+            {
+                //audios NOCHE
+            }
+        }   
+
+
     }
 
     public void ActivateScreams()

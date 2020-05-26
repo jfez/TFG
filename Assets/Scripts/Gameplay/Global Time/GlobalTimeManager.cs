@@ -49,12 +49,12 @@ public class GlobalTimeManager : MonoBehaviour
         {
             if (i == 0)
             {
-                timingClips[i] = 60;
+                timingClips[i] = 120;
             }
 
             else
             {
-                timingClips[i] = 60 + (3*60*i);
+                timingClips[i] = 120 + (2*60*i);
             }
             
         }
@@ -63,7 +63,7 @@ public class GlobalTimeManager : MonoBehaviour
         timer = 0;
         isNight = false;
         indexBells = 0;
-        executionTimeMins = 13f;
+        executionTimeMins = 10f;
     }
 
     // Update is called once per frame
