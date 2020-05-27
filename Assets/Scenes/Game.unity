@@ -1897,6 +1897,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1586719932}
   reciever: {fileID: 452841242}
+  discussionClip: {fileID: 0}
 --- !u!65 &100749547
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10423,6 +10424,142 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539110995}
   m_Mesh: {fileID: 4300006, guid: a4757122dc517974bac14f15407194b0, type: 3}
+--- !u!1 &542867518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 542867520}
+  - component: {fileID: 542867519}
+  m_Layer: 0
+  m_Name: GuillotineAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &542867519
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542867518}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 44e502713e1382c44a0d135971c9e51b, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 1000
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.001
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.52264875
+      value: 0.4110096
+      inSlope: -0.9885126
+      outSlope: -0.9885126
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.11621868
+      outWeight: 0.17053027
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1.001001
+      outSlope: -1.001001
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &542867520
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542867518}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.08, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_Children: []
+  m_Father: {fileID: 1434216726}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &551815465
 GameObject:
   m_ObjectHideFlags: 0
@@ -10733,6 +10870,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1586719932}
   reciever: {fileID: 1136953701}
+  discussionClip: {fileID: 8300000, guid: 7734001391587b04d9ed877cb31e9acc, type: 3}
 --- !u!65 &553967968
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -44092,6 +44230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1586719932}
   reciever: {fileID: 1238788200}
+  discussionClip: {fileID: 0}
 --- !u!65 &873964714
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -47689,9 +47828,15 @@ MonoBehaviour:
   - 5
   - 7
   - 15
+  arrayAudiosTimeIslandDay: []
+  arrayTimesTimeIslandDay: []
+  arrayAudiosTimeIslandNight: []
+  arrayTimesTimeIslandNight: []
   timerAudios: 0
   indexAudio: 0
   finishAudios: 0
+  guillotineAudio: {fileID: 542867519}
+  guillotineManager: {fileID: 681775222}
 --- !u!4 &1088385149
 Transform:
   m_ObjectHideFlags: 0
@@ -55946,6 +56091,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1586719932}
   reciever: {fileID: 1603728821}
+  discussionClip: {fileID: 0}
 --- !u!65 &1268361197
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -67254,6 +67400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1586719932}
   reciever: {fileID: 752780820}
+  discussionClip: {fileID: 0}
 --- !u!65 &1971030711
 BoxCollider:
   m_ObjectHideFlags: 0

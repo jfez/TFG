@@ -47,35 +47,35 @@ public class GlobalTimeManager : MonoBehaviour
 
         for (int i = 0; i < timingClips.Length; i++)
         {
-            if (i == 0)
-            {
-                timingClips[i] = 120;
-            }
-
-            else
-            {
-                timingClips[i] = 120 + (2*60*i);
-            }
+            timingClips[i] = 120 + (2*60*i);
             
         }
+
+        /*for (int i = 0; i < timingClips.Length; i++)
+        {
+            timingClips[i] = 5 + (5*i);
+            
+        }*/
 
         lerpValue = 0;
         timer = 0;
         isNight = false;
         indexBells = 0;
-        executionTimeMins = 10f;
+        executionTimeMins = timingClips[timingClips.Length-1];    //10f
     }
 
     // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
+        //Debug.Log(timingClips[indexBells]);
 
         if (!isNight)
         {
             if (lerpValue < 1)
             {
                 lerpValue = timer / (executionTimeMins * 60);
+                //lerpValue = timer / (executionTimeMins);
 
                 lerpedSkyColor = Color.Lerp(initSkyColor, newSkyColor, lerpValue);
                 lerpedHorizonColor = Color.Lerp(initHorizonColor, newHorizonColor, lerpValue);
@@ -91,16 +91,21 @@ public class GlobalTimeManager : MonoBehaviour
                 isNight = true;
                 realTimeManager.onTime = false;
                 gameManager.DeactivatePhysicSun();
+                gameManager.PlayGuillotine();
             }
             
             
         }
 
-        if (timer > timingClips[indexBells])
+        if (timer > timingClips[indexBells] && !isNight)
         {
             audioSource.clip = belllsClip[indexBells];
             audioSource.Play();
-            indexBells++;
+            if (indexBells < timingClips.Length -1)
+            {
+                indexBells++;
+            }
+            
         }
     }
 

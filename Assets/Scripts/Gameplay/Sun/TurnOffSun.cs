@@ -26,6 +26,7 @@ public class TurnOffSun : MonoBehaviour
         {
             globalTimeManager.SunOff();
             globalTimeManager.isNight = true;
+            gameManager.manualNight = true;
             gameManager.DeactivatePhysicSun();
         }
         

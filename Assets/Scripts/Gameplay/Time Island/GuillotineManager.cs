@@ -22,14 +22,9 @@ public class GuillotineManager : MonoBehaviour
         forceExecution = 250f;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Execution()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            guillotineRB.useGravity = true;
-            
-        }
+        guillotineRB.useGravity = true;
     }
 
     void OnCollisionEnter(Collision collision)

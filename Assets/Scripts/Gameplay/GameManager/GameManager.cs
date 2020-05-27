@@ -46,6 +46,12 @@ public class GameManager : MonoBehaviour
     public float[] arrayTimesInitialIsland;
     public AudioClip[] arrayAudiosStatuesIsland;
     public float[] arrayTimesStatuesIsland;
+
+    public AudioClip[] arrayAudiosTimeIslandDay;
+    public float[] arrayTimesTimeIslandDay;
+
+    public AudioClip[] arrayAudiosTimeIslandNight;
+    public float[] arrayTimesTimeIslandNight;
     
     [HideInInspector]
     public float timerAudios;
@@ -53,6 +59,10 @@ public class GameManager : MonoBehaviour
     public int indexAudio;
     [HideInInspector]
     public bool finishAudios;
+    public AudioSource guillotineAudio;
+    public GuillotineManager guillotineManager;
+    [HideInInspector]
+    public bool manualNight;
     
     void Awake()
     {
@@ -88,6 +98,7 @@ public class GameManager : MonoBehaviour
         player.enabled = false;
         player.transform.position = beginPoint.position;
         player.enabled = true;
+        manualNight = false;
 
 
 
@@ -113,6 +124,7 @@ public class GameManager : MonoBehaviour
         if (!ManagerMenu.Instance.paused && !finishAudios && presentationDone)
         {
             timerAudios += Time.deltaTime;
+            //Debug.Log(indexAudio);
             //Debug.Log(timerAudios);
         }
 
@@ -183,23 +195,67 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        else if (indexIsland == 3)
+        /*else if (indexIsland == 3)      //time island
         {
-            if (GetIsNight() && indexInsideIsland != 2)
+            if (GetIsNight() && indexInsideIsland != 2 && !manualNight)
             {
                 indexInsideIsland = 2;
+                finishAudios = false;
+                timerAudios = 0;
+                indexAudio = 0;
             }
 
-            if (indexInsideIsland == 1)
+            if (indexInsideIsland == 1)     //day
             {
-                //audios DÍA
+                if (manualNight && !finishAudios)
+                {
+                    finishAudios = true;
+                    timerAudios = 0;
+                }
+                
+                if(timerAudios > arrayTimesTimeIslandDay[indexAudio])
+                {
+                    DialogueManager.Instance.audioSource.spatialBlend = 0f;
+                    DialogueManager.Instance.BeginDialogue(arrayAudiosTimeIslandDay[indexAudio], 2f, AudioKind.AudioKindEnum.Time);
+                    
+                    if (indexAudio < arrayTimesTimeIslandDay.Length - 1)
+                    {
+                        indexAudio++;
+                    }
+
+                    else
+                    {
+                        finishAudios = true;
+                        timerAudios = 0;
+                    }  
+                }            
             }
 
-            else
+            else        // automatic night (execution done)
             {
-                //audios NOCHE
+                if(timerAudios > arrayTimesTimeIslandNight[indexAudio])
+                {
+                    DialogueManager.Instance.audioSource.spatialBlend = 0f;
+                    DialogueManager.Instance.BeginDialogue(arrayAudiosTimeIslandNight[indexAudio], 2f, AudioKind.AudioKindEnum.Time);
+                    
+                    if (indexAudio < arrayTimesTimeIslandNight.Length - 1)
+                    {
+                        indexAudio++;
+                    }
+
+                    else
+                    {
+                        finishAudios = true;
+                        timerAudios = 0;
+                    }  
+                }   
             }
-        }   
+
+            if (DialogueManager.Instance.audioKindEnum != AudioKind.AudioKindEnum.None)
+            {
+                timerAudios = 0;
+            }
+        }*/ 
 
 
     }
@@ -261,5 +317,18 @@ public class GameManager : MonoBehaviour
         presentationDone = true;
         firstPersonController.paused = false;
         ManagerMenu.Instance.paused = false;
+    }
+
+    public void PlayGuillotine()
+    {
+        
+        StartCoroutine(GuillotineSound());
+    }
+
+    private IEnumerator GuillotineSound()
+    {
+        yield return new WaitForSeconds(5f);
+        guillotineManager.Execution();
+        guillotineAudio.Play();
     }
 }

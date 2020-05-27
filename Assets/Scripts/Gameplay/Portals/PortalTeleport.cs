@@ -12,6 +12,9 @@ public class PortalTeleport : MonoBehaviour
 	private CamerasPortalsManagement camerasPortalsManagement;
 
 	private GameManager gameManager;
+	private float timeOffset;
+	public AudioClip discussionClip;
+	private AudioSource scratchAudioSource;
 
 
 	void Start()
@@ -19,6 +22,8 @@ public class PortalTeleport : MonoBehaviour
 		gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 		audiotp = GetComponent<AudioSource>();
 		camerasPortalsManagement = GameObject.FindGameObjectWithTag("CamPortalsManagement").GetComponent<CamerasPortalsManagement>();
+		timeOffset = 2f;
+		scratchAudioSource = GameObject.FindGameObjectWithTag("Scratch").GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -67,6 +72,25 @@ public class PortalTeleport : MonoBehaviour
 
 			GameManager.Instance.indexIsland++;
 			GameManager.Instance.indexInsideIsland = 1;
+			GameManager.Instance.finishAudios = false;
+			GameManager.Instance.timerAudios = 0;
+			GameManager.Instance.indexAudio = 0;
+
+			if (GameManager.Instance.indexIsland == 3 && discussionClip != null)
+			{
+				if (DialogueManager.Instance.audioKindEnum == AudioKind.AudioKindEnum.Time)
+				{
+					scratchAudioSource.gameObject.GetComponent<ScratchManager>().ScratchTime();
+				}
+
+				else if (DialogueManager.Instance.audioKindEnum == AudioKind.AudioKindEnum.Voxophone)
+				{
+					scratchAudioSource.gameObject.GetComponent<ScratchManager>().ScratchVoxophone();
+				}
+
+				DialogueManager.Instance.audioSource.spatialBlend = 0f;
+				DialogueManager.Instance.BeginDialogue(discussionClip, timeOffset, AudioKind.AudioKindEnum.Event);
+			}
 		}
 	}
 
