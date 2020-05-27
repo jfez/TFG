@@ -38,4 +38,9 @@ public class PickUp : MonoBehaviour
             
         }
     }
+
+    public void DestroyCamera()
+    {
+        Destroy(gameObject);
+    }
 }

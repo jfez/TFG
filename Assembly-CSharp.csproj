@@ -83,7 +83,9 @@
      <Compile Include="Assets\Scripts\Gameplay\ListenerSculpture.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Loop Manager\LoopManagerGame.cs" />
      <Compile Include="Assets\Scripts\Gameplay\ManagerMenu.cs" />
-     <Compile Include="Assets\Scripts\Gameplay\MazeEscape.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Mazes\ChangeMaze.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Mazes\MazeEscape.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Mazes\TriggerMaze.cs" />
      <Compile Include="Assets\Scripts\Gameplay\MoveObject.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Photo Camera\OpenDoor.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Photo Camera\PhotoKey.cs" />
@@ -101,7 +103,6 @@
      <Compile Include="Assets\Scripts\Gameplay\testCube.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Time Island\GuillotineManager.cs" />
      <Compile Include="Assets\Scripts\Gameplay\TreePuzzle.cs" />
-     <Compile Include="Assets\Scripts\Gameplay\TriggerMaze.cs" />
      <Compile Include="Assets\Scripts\Gameplay\VoiceRecognition.cs" />
      <Compile Include="Assets\Scripts\Init\InitManager.cs" />
      <Compile Include="Assets\Scripts\Init\LoopManager.cs" />

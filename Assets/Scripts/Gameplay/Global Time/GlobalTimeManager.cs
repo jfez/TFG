@@ -32,12 +32,14 @@ public class GlobalTimeManager : MonoBehaviour
     private int indexBells;
     private float executionTimeMins;
     private GameManager gameManager;
+    private AudioSource scratchAudioSource;
 
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        scratchAudioSource = GameObject.FindGameObjectWithTag("Scratch").GetComponent<AudioSource>();
         
         initSkyColor = skyboxObject.GetComponent<MeshRenderer>().material.GetColor("_SkyColor");
         initHorizonColor = skyboxObject.GetComponent<MeshRenderer>().material.GetColor("_HorizonColor");
@@ -62,6 +64,7 @@ public class GlobalTimeManager : MonoBehaviour
         isNight = false;
         indexBells = 0;
         executionTimeMins = timingClips[timingClips.Length-1];    //10f
+        //executionTimeMins = 5;
     }
 
     // Update is called once per frame
@@ -100,6 +103,19 @@ public class GlobalTimeManager : MonoBehaviour
         if (timer > timingClips[indexBells] && !isNight)
         {
             audioSource.clip = belllsClip[indexBells];
+            
+            if (indexBells == timingClips.Length -1)
+            {
+                if (DialogueManager.Instance.audioKindEnum == AudioKind.AudioKindEnum.Time && GameManager.Instance.indexIsland != 1)    //not in initial island
+                {
+                    scratchAudioSource.gameObject.GetComponent<ScratchManager>().ScratchTime();
+                }
+
+                else if (DialogueManager.Instance.audioKindEnum == AudioKind.AudioKindEnum.Voxophone)
+                {
+                    scratchAudioSource.gameObject.GetComponent<ScratchManager>().ScratchVoxophone();
+                }
+            }
             audioSource.Play();
             if (indexBells < timingClips.Length -1)
             {

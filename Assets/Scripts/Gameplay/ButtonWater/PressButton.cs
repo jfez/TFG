@@ -9,11 +9,17 @@ public class PressButton : MonoBehaviour
     public PressButton other;
     [HideInInspector]
     public bool activated;
+    private AudioSource scratchAudioSource;
+    private float timeOffset;
+
+    public AudioClip dialogueClip;
     
     // Start is called before the first frame update
     void Start()
     {
         activated = false;
+        scratchAudioSource = GameObject.FindGameObjectWithTag("Scratch").GetComponent<AudioSource>();
+        timeOffset = 2f;
     }
 
     // Update is called once per frame
@@ -24,15 +30,40 @@ public class PressButton : MonoBehaviour
 
     void OnMouseDown()
     {
-        /*if (!activated && !other.activated)
+        if (!activated && !other.activated)
         {
-            Instantiate(particlesSystem, particlesSpawn.position, Quaternion.identity);
+            activated = true;
+            GameManager.Instance.decision = true;
+            
+            //Instantiate(particlesSystem, particlesSpawn.position, Quaternion.identity);
             //other disolve
             //este se pone bonito
             //trigger animación vaciar tanque de agua
-        }*/
 
-        Instantiate(particlesSystem, particlesSpawn.position, Quaternion.identity);
-        
+            PlayAudio();
+        }
+
+        Instantiate(particlesSystem, particlesSpawn.position, Quaternion.identity); 
+    }
+
+    public void NoDecision()
+    {
+        Debug.Log("NO DECISION");
+    }
+
+    public void PlayAudio()
+    {
+        if (DialogueManager.Instance.audioKindEnum == AudioKind.AudioKindEnum.Time)
+        {
+            scratchAudioSource.gameObject.GetComponent<ScratchManager>().ScratchTime();
+        }
+
+        else if (DialogueManager.Instance.audioKindEnum == AudioKind.AudioKindEnum.Voxophone)
+        {
+            scratchAudioSource.gameObject.GetComponent<ScratchManager>().ScratchVoxophone();
+        }
+
+        DialogueManager.Instance.audioSource.spatialBlend = 0f;
+        DialogueManager.Instance.BeginDialogue(dialogueClip, timeOffset, AudioKind.AudioKindEnum.Event);
     }
 }

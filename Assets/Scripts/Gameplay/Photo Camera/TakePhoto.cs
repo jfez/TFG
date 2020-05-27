@@ -46,7 +46,7 @@ public class TakePhoto : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(1))
             {
-                Debug.Log("enfoque");
+                //Debug.Log("enfoque");
                 focus = true;
                 cameraAnimator.SetTrigger("Focus");
                 //cameraObject.SetActive(false);
@@ -60,7 +60,7 @@ public class TakePhoto : MonoBehaviour
 
             if (Input.GetMouseButtonUp(1))
             {
-                Debug.Log("desenfoque");
+                //Debug.Log("desenfoque");
                 focus = false;
                 cameraAnimator.SetTrigger("Unfocus");
                 //cameraObject.SetActive(true);
@@ -120,5 +120,10 @@ public class TakePhoto : MonoBehaviour
         }
         
         return null;
+    }
+    public void DestroyPhoto()
+    {
+        Destroy(photoObject);
+        this.enabled = false;
     }
 }

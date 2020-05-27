@@ -6,4 +6,4 @@
 <time/>025.931|Because in the end, life can only be understood backwards;
 <time/>030.371|but it must be lived forwards.
 <time/>033.460|And that titanic problem is just a water drop in the sea.
-<time/>040.500|<break/> 
+<time/>040.500|<break/>

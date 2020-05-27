@@ -63,6 +63,21 @@ public class GameManager : MonoBehaviour
     public GuillotineManager guillotineManager;
     [HideInInspector]
     public bool manualNight;
+    private float timerDecision;
+    [HideInInspector]
+    public bool decision;
+    public PressButton plant, fish;
+    private float timeDecision;
+
+    public VoiceRecognition voiceRecognition;
+
+    [HideInInspector]
+    public bool statueDisolved;
+    [HideInInspector]
+    public bool onPositionToDisolve;
+    public GameObject statueSign;
+
+
     
     void Awake()
     {
@@ -77,26 +92,31 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        indexIsland = 1;
+        indexIsland = 4;        //1
         indexInsideIsland = 1;
         indexAudio = 0;
         physicalSun.SetActive(false);
 
         timer = 0;
         timerAudios = 0;
+        timerDecision = 0;
+        timeDecision = 60;
         fadeOut = true;            //false
         presentationDone = true;   //false
         finishAudios = false;
+        decision = false;
+        statueDisolved = false;
+        onPositionToDisolve = false;
 
         BSOAudioSource.clip = initClip;
         //BSOAudioSource.Play();
-        img.gameObject.SetActive(false);    //quitar
+        img.gameObject.SetActive(false);    //true
 
         
         firstPersonController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
 
         player.enabled = false;
-        player.transform.position = beginPoint.position;
+        //player.transform.position = beginPoint.position;
         player.enabled = true;
         manualNight = false;
 
@@ -107,6 +127,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         /*if (timer < initClip.length - 5)
         {
             timer += Time.deltaTime;
@@ -195,8 +216,21 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        /*else if (indexIsland == 3)      //time island
+        else if (indexIsland == 3)      //time island
         {
+            if (!decision)
+            {
+                timerDecision += Time.deltaTime;
+                if (timerDecision > timeDecision)
+                {
+                    plant.NoDecision();
+                    fish.NoDecision();
+                    fish.PlayAudio();
+                    decision = true;
+                }
+            }
+            
+            
             if (GetIsNight() && indexInsideIsland != 2 && !manualNight)
             {
                 indexInsideIsland = 2;
@@ -255,8 +289,12 @@ public class GameManager : MonoBehaviour
             {
                 timerAudios = 0;
             }
-        }*/ 
+        }
 
+        else if (!finishAudios)
+        {
+            finishAudios = true;
+        }
 
     }
 
@@ -330,5 +368,11 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         guillotineManager.Execution();
         guillotineAudio.Play();
+    }
+
+    public void DisolveStatueSign()
+    {
+        Destroy(statueSign);
+        statueDisolved = true;
     }
 }

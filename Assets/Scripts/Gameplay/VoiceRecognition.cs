@@ -72,6 +72,7 @@ public class VoiceRecognition : MonoBehaviour
     
     void Start(){
         actions.Add("stop", Stop);
+        actions.Add("go", Go);
 
         scratchAudioSource = GameObject.FindGameObjectWithTag("Scratch").GetComponent<AudioSource>();
         timeOffset = 2f;
@@ -90,21 +91,25 @@ public class VoiceRecognition : MonoBehaviour
 
     void Update ()
     {
-        timer += Time.deltaTime;
+        if (GameManager.Instance.indexIsland == 2)
+        {
+            timer += Time.deltaTime;
     
-        loudness = GetAveragedVolume() * sensitivity;
-        //Debug.Log(loudness);
-        
-        if (loudness > highestLoudness)
-        {
-            highestLoudness = loudness;
-        }
+            loudness = GetAveragedVolume() * sensitivity;
+            //Debug.Log(loudness);
+            
+            if (loudness > highestLoudness)
+            {
+                highestLoudness = loudness;
+            }
 
-        if (timer > 3f)
-        {
-            timer = 0f;
-            highestLoudness = loudness;
+            if (timer > 3f)
+            {
+                timer = 0f;
+                highestLoudness = loudness;
+            }
         }
+        
     }
 
     void RecognizedSpeech(PhraseRecognizedEventArgs speech){
@@ -114,7 +119,7 @@ public class VoiceRecognition : MonoBehaviour
     
     void Stop()
     {
-        if (audioScreams.isPlaying)
+        if (audioScreams.isPlaying && !ManagerMenu.Instance.paused)
         { 
             Debug.Log(highestLoudness);
             
@@ -171,6 +176,15 @@ public class VoiceRecognition : MonoBehaviour
             }
             
         }
+    }
+
+    void Go()
+    {
+        if (!GameManager.Instance.statueDisolved && GameManager.Instance.onPositionToDisolve)
+        {
+            GameManager.Instance.DisolveStatueSign();
+        }
+        
     }
 
     float GetAveragedVolume () 

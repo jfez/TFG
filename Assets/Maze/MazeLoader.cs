@@ -10,10 +10,12 @@ public class MazeLoader : MonoBehaviour {
 	private MazeCell[,] mazeCells;
 
 	public GameObject mazeParent;
+	public GameObject corridorParent;
 
 	// Use this for initialization
 	void Start () 
 	{
+		corridorParent.SetActive(false);
 		StartMaze();
 	}
 	
@@ -82,7 +84,7 @@ public class MazeLoader : MonoBehaviour {
 		mazeParent.transform.Rotate(Vector3.up, 90f);
 	}
 
-	private void StartMaze()
+	public void StartMaze()
 	{
 		DeleteMaze();
 		InitializeMaze ();
@@ -97,5 +99,11 @@ public class MazeLoader : MonoBehaviour {
 		{
 			GameObject.Destroy(child.gameObject);
 		}
+	}
+
+	public void MakeCorridor()
+	{
+		DeleteMaze();
+		corridorParent.SetActive(true);
 	}
 }

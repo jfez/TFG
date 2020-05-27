@@ -4,4 +4,4 @@
 <time/>008.658|It won't be long.
 <time/>010.594|Cause the darkest hour of the darkest night
 <time/>013.102|comes right before the dawn.
-<time/>017.235|<break/> 
+<time/>017.235|<break/>
