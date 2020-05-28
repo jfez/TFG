@@ -76,6 +76,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public bool onPositionToDisolve;
     public GameObject statueSign;
+    public Transform particlesDissolvePosition;
+    public GameObject particlesDissolveEffect;
 
 
     
@@ -370,9 +372,25 @@ public class GameManager : MonoBehaviour
         guillotineAudio.Play();
     }
 
-    public void DisolveStatueSign()
+    public void DissolveStatueSign()
     {
-        Destroy(statueSign);
+        //Destroy(statueSign);
+        StartCoroutine(DissolveStatue());
         statueDisolved = true;
+    }
+
+    private IEnumerator DissolveStatue()
+    {
+        float timeDissolve = 3f;
+        float lerpValue = 0;
+        GameObject particlesInstanced = Instantiate (particlesDissolveEffect, particlesDissolvePosition.position, particlesDissolveEffect.transform.rotation);
+        Destroy(particlesInstanced, 10f);
+        // loop over 1 second backwards
+        for (float i = 0; i <= timeDissolve; i += Time.deltaTime)
+        {
+            lerpValue = i / timeDissolve;
+            statueSign.GetComponent<MeshRenderer>().material.SetFloat("_Mask", lerpValue);
+            yield return null;
+        }
     }
 }

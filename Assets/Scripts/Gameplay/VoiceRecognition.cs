@@ -72,7 +72,7 @@ public class VoiceRecognition : MonoBehaviour
     
     void Start(){
         actions.Add("stop", Stop);
-        actions.Add("go", Go);
+        actions.Add("past", Past);
 
         scratchAudioSource = GameObject.FindGameObjectWithTag("Scratch").GetComponent<AudioSource>();
         timeOffset = 2f;
@@ -178,12 +178,15 @@ public class VoiceRecognition : MonoBehaviour
         }
     }
 
-    void Go()
+    void Past()
     {
-        if (!GameManager.Instance.statueDisolved && GameManager.Instance.onPositionToDisolve)
+        /*if (!GameManager.Instance.statueDisolved && GameManager.Instance.onPositionToDisolve)
         {
             GameManager.Instance.DisolveStatueSign();
-        }
+        }*/
+
+        Debug.Log("PAST");
+        GameManager.Instance.DissolveStatueSign();
         
     }
 
