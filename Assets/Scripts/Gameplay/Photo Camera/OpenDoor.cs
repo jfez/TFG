@@ -22,10 +22,15 @@ public class OpenDoor : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player") && collider.gameObject.GetComponent<TakePhoto>().keyPicked)
         {
-            Debug.Log("OPEN DOOR");
-            GameManager.Instance.onPositionToDisolve = true;
-            pickUp.DestroyCamera();
-            takePhoto.DestroyPhoto();
+            if (pickUp != null && takePhoto != null)
+            {
+                Debug.Log("OPEN DOOR");
+                GameManager.Instance.onPositionToDisolve = true;
+                pickUp.DestroyCamera();
+                takePhoto.DestroyPhoto();
+                Destroy(gameObject);
+            }
+            
         }
     }
 }

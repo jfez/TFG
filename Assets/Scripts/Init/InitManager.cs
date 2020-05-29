@@ -7,6 +7,9 @@ public class InitManager : MonoBehaviour
 {
     public GameObject panelGeneral;
     public GameObject panelOptions;
+
+    public GameObject panelCredits;
+    public GameObject textCredits;
     private OptionsManager optionsManager;
     
     // Start is called before the first frame update
@@ -14,6 +17,7 @@ public class InitManager : MonoBehaviour
     {
         panelGeneral.SetActive(true);
         panelOptions.SetActive(false);
+        panelCredits.SetActive(false);
         optionsManager = GetComponent<OptionsManager>();
     }
 
@@ -34,6 +38,13 @@ public class InitManager : MonoBehaviour
         panelOptions.SetActive(true);
     }
 
+    public void Credits()
+    {
+        panelGeneral.SetActive(false);
+        panelCredits.SetActive(true);
+        textCredits.GetComponent<Animator>().SetTrigger("playCredits");
+    }
+
     public void Exit()
     {
         Application.Quit();
@@ -47,6 +58,12 @@ public class InitManager : MonoBehaviour
         PlayerPrefs.SetInt("quality", optionsManager.dropdownQuality.value);
         PlayerPrefs.SetInt("fullscreen", optionsManager.toggleFullscreen.isOn?1:0);
 
+    }
+
+    public void BackFromCredits()
+    {
+        panelGeneral.SetActive(true);
+        panelCredits.SetActive(false);
     }
 
 

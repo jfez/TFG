@@ -1,7 +1,7 @@
 <time/>001.486|Because sometimes it seems that the mind is the greatest enemy.
-<time/>006.455|Blessed and treacherous, it casts darkness and light into every corner.
-<time/>015.296|And it is in that moment, locked in the depths of my beaten mind, 
-<time/>018.010|where I find chimeras wherever I look,
-<time/>020.973|when I remember that there is always a way out
-<time/>024.200|and I rise to walk, determined.
-<time/>036.700|<break/>
+<time/>006.100|Blessed and treacherous, it casts darkness and light into every corner.
+<time/>013.000|And it is in that moment, locked in the depths of my beaten mind, 
+<time/>017.025|where I find chimeras wherever I look,
+<time/>020.300|when I remember that there is always a way out
+<time/>024.000|and I rise to walk, determined.
+<time/>027.700|<break/>

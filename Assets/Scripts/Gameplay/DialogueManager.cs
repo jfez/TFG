@@ -37,7 +37,7 @@ public class DialogueManager : MonoBehaviour
     //GUI
     private GUIStyle subtitlesStyle = new GUIStyle();
     private float scaleRatio = 1.5f;
-    private float heightRatio = 0.04f;
+    private float heightRatio = 0.06f;
 
     [HideInInspector]
     public AudioKind.AudioKindEnum audioKindEnum;
@@ -52,10 +52,13 @@ public class DialogueManager : MonoBehaviour
 
     private float timer;
 
+    [HideInInspector]
     public bool subtitlesEnabled;
     public Toggle toggle;
 
     private float timeOffset;
+
+    public Font subtitlesFont;
     
     void Awake()
     {
@@ -217,6 +220,8 @@ public class DialogueManager : MonoBehaviour
                 subtitlesStyle.alignment = TextAnchor.MiddleCenter;
                 subtitlesStyle.normal.textColor = Color.white;
                 subtitlesStyle.fontSize = Mathf.FloorToInt(Screen.height * heightRatio);
+
+                subtitlesStyle.font = subtitlesFont;
 
                 if (subtitlesEnabled && !ManagerMenu.Instance.paused)
                 {

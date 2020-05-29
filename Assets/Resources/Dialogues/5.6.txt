@@ -1,7 +1,7 @@
 <time/>000.480|Where are you? Where are you now?
-<time/>003.097|-Orpheus,
-<time/>005.288|hold on, hold on tight.
-<time/>008.658|It won't be long.
-<time/>010.594|Cause the darkest hour of the darkest night
-<time/>013.102|comes right before the dawn.
-<time/>017.235|<break/>
+<time/>002.100|-Orpheus,
+<time/>004.020|hold on, hold on tight.
+<time/>008.000|It won't be long.
+<time/>010.000|Cause the darkest hour of the darkest night
+<time/>012.150|comes right before the dawn.
+<time/>014.235|<break/>

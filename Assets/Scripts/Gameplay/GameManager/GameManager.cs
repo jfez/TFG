@@ -392,5 +392,7 @@ public class GameManager : MonoBehaviour
             statueSign.GetComponent<MeshRenderer>().material.SetFloat("_Mask", lerpValue);
             yield return null;
         }
+
+        Destroy(statueSign);
     }
 }

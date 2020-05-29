@@ -180,13 +180,14 @@ public class VoiceRecognition : MonoBehaviour
 
     void Past()
     {
-        /*if (!GameManager.Instance.statueDisolved && GameManager.Instance.onPositionToDisolve)
+        if (!GameManager.Instance.statueDisolved && GameManager.Instance.onPositionToDisolve && !ManagerMenu.Instance.paused)
         {
-            GameManager.Instance.DisolveStatueSign();
-        }*/
+            GameManager.Instance.DissolveStatueSign();
+            Debug.Log("PAST");
+        }
 
-        Debug.Log("PAST");
-        GameManager.Instance.DissolveStatueSign();
+        
+        
         
     }
 

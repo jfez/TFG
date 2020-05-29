@@ -27,9 +27,9 @@ public class TriggerMaze : MonoBehaviour
         {
             animator.SetTrigger("maze");
             if(LockedUp != null)
-                {
-                    LockedUp();
-                }
+            {
+                LockedUp();
+            }
             Destroy(gameObject);
         }
     }
