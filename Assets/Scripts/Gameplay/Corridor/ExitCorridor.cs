@@ -24,6 +24,7 @@ public class ExitCorridor : MonoBehaviour
             GameManager.Instance.indexAudio = 0;
             GameManager.Instance.finishAudios = false;
             GameManager.Instance.indexInsideIsland++;
+            Destroy(gameObject);
         }
     }
 }

@@ -28,6 +28,8 @@ public class TakePhoto : MonoBehaviour
 
     private Animator cameraAnimator;
 
+    public AudioSource polaroidSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,6 +79,7 @@ public class TakePhoto : MonoBehaviour
                 keyPicked = false;
                 Debug.Log("SIN LLAVE");
                 StartCoroutine(TakingPhoto());
+                polaroidSound.Play();
             }
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.Characters.FirstPerson;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,7 +33,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public bool presentationDone;
 
-    public Image img;
+    public Image imgWhite;
+    public Image imgBlack;
 
     private FirstPersonController firstPersonController;
 
@@ -68,6 +70,8 @@ public class GameManager : MonoBehaviour
     public bool decision;
     public PressButton plant, fish;
     private float timeDecision;
+    private float timerInaction;
+    private float timeInaction;
 
     public VoiceRecognition voiceRecognition;
 
@@ -78,6 +82,13 @@ public class GameManager : MonoBehaviour
     public GameObject statueSign;
     public Transform particlesDissolvePosition;
     public GameObject particlesDissolveEffect;
+
+    public SaveVoice saveVoice;
+    [HideInInspector]
+    public bool action;
+    public AudioSource fallDownJail;
+    public GameObject[] prisoners;
+    public LoopManagerGame loopManager;
 
 
     
@@ -94,7 +105,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        indexIsland = 4;        //1
+        indexIsland = 1;        //1
         indexInsideIsland = 1;
         indexAudio = 0;
         physicalSun.SetActive(false);
@@ -103,16 +114,20 @@ public class GameManager : MonoBehaviour
         timerAudios = 0;
         timerDecision = 0;
         timeDecision = 60;
+        timerInaction = 0;
+        timeInaction = 90;
         fadeOut = true;            //false
         presentationDone = true;   //false
         finishAudios = false;
         decision = false;
+        action = false;
         statueDisolved = false;
         onPositionToDisolve = false;
 
         BSOAudioSource.clip = initClip;
-        //BSOAudioSource.Play();
-        img.gameObject.SetActive(false);    //true
+        //BSOAudioSource.Play();        //outcomment
+        imgWhite.gameObject.SetActive(false);    //true
+        imgBlack.gameObject.SetActive(false);
 
         
         firstPersonController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
@@ -148,7 +163,7 @@ public class GameManager : MonoBehaviour
         {
             timerAudios += Time.deltaTime;
             //Debug.Log(indexAudio);
-            //Debug.Log(timerAudios);
+            Debug.Log(timerAudios);
         }
 
         if (indexIsland == 1 && indexInsideIsland == 1)     //corridor
@@ -298,11 +313,41 @@ public class GameManager : MonoBehaviour
             finishAudios = true;
         }
 
+        if (indexIsland == 6)   //lacanian island
+        {   
+            if (!action)
+            {
+                timerInaction += Time.deltaTime;
+                if (timerInaction > timeInaction)
+                {
+                    DisableMovement();
+                    loopManager.BreakLoop();
+                    StartCoroutine(FadeIn());
+                    action = true;
+                }
+            }
+        }
+
     }
 
+    public void DisableMovement()
+    {
+        firstPersonController.paused = true;
+    }
+
+    public void EnableMovement()
+    {
+        firstPersonController.paused = false;
+    }
+    
     public void ActivateScreams()
     {
         audioScreams.Play();
+    }
+
+    private void DeactivateScreams()
+    {
+        audioScreams.Stop();
     }
 
     public void OpenSecondPortal()
@@ -311,6 +356,7 @@ public class GameManager : MonoBehaviour
         {
             colliderSecondPortal.SetActive(true);
             colliderSecondStop.SetActive(false);
+            DissolvePrisoners();
         }
     }
 
@@ -346,17 +392,51 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator FadeOut()
     {
-        // loop over 3 seconds backwards
         for (float i = 3; i >= 0; i -= Time.deltaTime)
         {
             // set color with i as alpha
-            img.color = new Color(0, 0, 0, i);
+            imgWhite.color = new Color(imgWhite.color.r, imgWhite.color.g, imgWhite.color.b, i/3);
             yield return null;
         }
 
+        imgWhite.color = new Color(imgWhite.color.r, imgWhite.color.g, imgWhite.color.b, 0);
         presentationDone = true;
         firstPersonController.paused = false;
         ManagerMenu.Instance.paused = false;
+    }
+
+    private IEnumerator FadeIn()
+    {
+        imgBlack.gameObject.SetActive(true);
+        for (float i = 0; i <= 3; i += Time.deltaTime)
+        {
+            // set color with i as alpha
+            imgBlack.color = new Color(imgBlack.color.r, imgBlack.color.g, imgBlack.color.b, i/3);
+            yield return null;
+        }
+        imgBlack.color = new Color(imgBlack.color.r, imgBlack.color.g, imgBlack.color.b, 1);
+
+        
+        yield return new WaitForSeconds (2f);
+        SceneManager.LoadScene("Init");
+    }
+
+    private IEnumerator FadeInAndOut()
+    {
+        imgWhite.gameObject.SetActive(true);
+        
+        imgWhite.color = new Color(imgWhite.color.r, imgWhite.color.g, imgWhite.color.b, 1);
+
+        yield return new WaitForSeconds(3f);
+
+        for (float i = 3; i >= 0; i -= Time.deltaTime)
+        {
+            // set color with i as alpha
+            imgWhite.color = new Color(imgWhite.color.r, imgWhite.color.g, imgWhite.color.b, i/3);
+            yield return null;
+        }
+
+        imgWhite.color = new Color(imgWhite.color.r, imgWhite.color.g, imgWhite.color.b, 0);
     }
 
     public void PlayGuillotine()
@@ -374,25 +454,62 @@ public class GameManager : MonoBehaviour
 
     public void DissolveStatueSign()
     {
-        //Destroy(statueSign);
-        StartCoroutine(DissolveStatue());
+        StartCoroutine(DissolveStatue(statueSign, false));
         statueDisolved = true;
     }
 
-    private IEnumerator DissolveStatue()
+    public void DissolvePrisoners()
+    {
+        foreach (GameObject statue in prisoners)
+        {
+            StartCoroutine(DissolveStatue(statue, true));
+        }
+    }
+
+    private IEnumerator DissolveStatue(GameObject statue, bool freedSoul)
     {
         float timeDissolve = 3f;
         float lerpValue = 0;
-        GameObject particlesInstanced = Instantiate (particlesDissolveEffect, particlesDissolvePosition.position, particlesDissolveEffect.transform.rotation);
-        Destroy(particlesInstanced, 10f);
-        // loop over 1 second backwards
+        if (freedSoul)
+        {
+            GameObject particlesInstanced = Instantiate (particlesDissolveEffect, particlesDissolvePosition.position, particlesDissolveEffect.transform.rotation);
+            Destroy(particlesInstanced, 10f);
+        }
+        
+        // loop over 3 seconds backwards
         for (float i = 0; i <= timeDissolve; i += Time.deltaTime)
         {
             lerpValue = i / timeDissolve;
-            statueSign.GetComponent<MeshRenderer>().material.SetFloat("_Mask", lerpValue);
+            statue.GetComponent<MeshRenderer>().material.SetFloat("_Mask", lerpValue);
             yield return null;
         }
 
-        Destroy(statueSign);
+        Destroy(statue);
+    }
+
+    public void PlayScreamsAndPlayer()
+    {
+        saveVoice.PlayPlayerVoice();
+        ActivateScreams();
+    }
+
+    public void StopScreamsAndPlayer()
+    {
+        saveVoice.StopPlayerVoice();
+        DeactivateScreams();
+
+    }
+
+    public void PlayFallDownJail()
+    {
+        fallDownJail.Play();
+    }
+    public void FinalFade()
+    {
+        StartCoroutine(FadeIn());
+    }
+    public void PlatonicFade()
+    {
+        StartCoroutine(FadeInAndOut());
     }
 }

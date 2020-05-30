@@ -14,11 +14,13 @@ public class LoopManagerGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.N) && Input.GetKey(KeyCode.M))
-        {
-            PlayerPrefs.SetInt("Loop", 1);
-            Debug.Log("LOOP BROKEN");
-            SceneManager.LoadScene("Init");
-        }
+        
+    }
+
+    public void BreakLoop()
+    {
+        PlayerPrefs.SetInt("Loop", 1);
+        Debug.Log("LOOP BROKEN");
+        SceneManager.LoadScene("Init");
     }
 }

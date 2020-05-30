@@ -91,7 +91,21 @@ public class PortalTeleport : MonoBehaviour
 				DialogueManager.Instance.audioSource.spatialBlend = 0f;
 				DialogueManager.Instance.BeginDialogue(discussionClip, timeOffset, AudioKind.AudioKindEnum.Event);
 			}
+
+			else if (GameManager.Instance.indexIsland == 6)
+			{
+				GameManager.Instance.PlatonicFade();
+				StartCoroutine(WaitForScreams());
+			}
 		}
+	}
+
+	private IEnumerator WaitForScreams()
+	{
+		GameManager.Instance.DisableMovement();
+		yield return new WaitForSeconds(3f);
+		GameManager.Instance.EnableMovement();
+		GameManager.Instance.PlayScreamsAndPlayer();
 	}
 
 	void OnTriggerExit (Collider other)

@@ -81,6 +81,7 @@
      <Compile Include="Assets\Scripts\Gameplay\GameManager\GameManager.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Global Time\GlobalTimeManager.cs" />
      <Compile Include="Assets\Scripts\Gameplay\ListenerSculpture.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Loop Manager\ContinueLoop.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Loop Manager\LoopManagerGame.cs" />
      <Compile Include="Assets\Scripts\Gameplay\ManagerMenu.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Mazes\ChangeMaze.cs" />
@@ -96,14 +97,14 @@
      <Compile Include="Assets\Scripts\Gameplay\Portals\PortalCamera.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Portals\PortalTeleport.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Portals\PortalTextureSetup.cs" />
-     <Compile Include="Assets\Scripts\Gameplay\PruebaGuardarVoz.cs" />
      <Compile Include="Assets\Scripts\Gameplay\ScratchManager\ScratchManager.cs" />
      <Compile Include="Assets\Scripts\Gameplay\SimpleCameraController.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Sun\TurnOffSun.cs" />
      <Compile Include="Assets\Scripts\Gameplay\testCube.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Time Island\GuillotineManager.cs" />
      <Compile Include="Assets\Scripts\Gameplay\TreePuzzle.cs" />
-     <Compile Include="Assets\Scripts\Gameplay\VoiceRecognition.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Voice Recognition\SaveVoice.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Voice Recognition\VoiceRecognition.cs" />
      <Compile Include="Assets\Scripts\Init\InitManager.cs" />
      <Compile Include="Assets\Scripts\Init\LoopManager.cs" />
      <Compile Include="Assets\Scripts\Init\OptionsManager.cs" />
