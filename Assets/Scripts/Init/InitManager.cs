@@ -19,6 +19,9 @@ public class InitManager : MonoBehaviour
         panelOptions.SetActive(false);
         panelCredits.SetActive(false);
         optionsManager = GetComponent<OptionsManager>();
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     // Update is called once per frame

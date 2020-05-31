@@ -81,6 +81,11 @@ public class TakePhoto : MonoBehaviour
                 StartCoroutine(TakingPhoto());
                 polaroidSound.Play();
             }
+
+            if (!focus && photoObject != null && !photoObject.activeSelf)
+            {
+                photoObject.SetActive(true);
+            }
         }
     }
 
@@ -89,9 +94,10 @@ public class TakePhoto : MonoBehaviour
         string fileName = System.DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
 
         finalPath = (Application.persistentDataPath + "/Screenshot " + fileName + ".png");
+        //Debug.Log(finalPath);
         
         ScreenCapture.CaptureScreenshot(finalPath);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(1f);
         last_screenshot_save = LoadSprite(finalPath);
         
         if (photoObject == null)
@@ -102,8 +108,13 @@ public class TakePhoto : MonoBehaviour
             photoObject.SetActive(false);
         }
         
-        photoObject.GetComponent<SpriteRenderer>().sprite = last_screenshot_save;
+        if (last_screenshot_save != null)
+        {
+            photoObject.GetComponent<SpriteRenderer>().sprite = last_screenshot_save;
+        }
         
+        
+        yield return new WaitForSeconds(5f);
         File.Delete(finalPath);
     }
 
@@ -111,6 +122,7 @@ public class TakePhoto : MonoBehaviour
     {
         if (string.IsNullOrEmpty(path))
         {
+            Debug.Log("EMPTY STRING");
             return null;
         } 
         if (System.IO.File.Exists(path))
@@ -122,6 +134,7 @@ public class TakePhoto : MonoBehaviour
             return sprite;
         }
         
+        Debug.Log("NULL??");
         return null;
     }
     public void DestroyPhoto()

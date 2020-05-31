@@ -119,6 +119,7 @@ public class VoiceRecognition : MonoBehaviour
     
     void Stop()
     {
+        Debug.Log("STOP");
         if (audioScreams.isPlaying && !ManagerMenu.Instance.paused && GameManager.Instance.indexIsland == 2)
         { 
             Debug.Log(highestLoudness);
@@ -181,10 +182,11 @@ public class VoiceRecognition : MonoBehaviour
 
     void Past()
     {
+        Debug.Log("PAST");
         if (!GameManager.Instance.statueDisolved && GameManager.Instance.onPositionToDisolve && !ManagerMenu.Instance.paused)
         {
             GameManager.Instance.DissolveStatueSign();
-            Debug.Log("PAST");
+            //Debug.Log("PAST");
         }
 
         

@@ -56,6 +56,7 @@ public class PlayRecorder : MonoBehaviour
             {
                 DialogueManager.Instance.audioSource.Stop();
                 DialogueManager.Instance.audioSource.clip = null;
+                DialogueManager.Instance.audioKindEnum = AudioKind.AudioKindEnum.None;
             }
             
         }

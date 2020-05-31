@@ -21,6 +21,5 @@ public class LoopManagerGame : MonoBehaviour
     {
         PlayerPrefs.SetInt("Loop", 1);
         Debug.Log("LOOP BROKEN");
-        SceneManager.LoadScene("Init");
     }
 }

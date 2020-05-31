@@ -102,6 +102,7 @@ public class PortalTeleport : MonoBehaviour
 
 	private IEnumerator WaitForScreams()
 	{
+		yield return new WaitForSeconds(0.2f);
 		GameManager.Instance.DisableMovement();
 		yield return new WaitForSeconds(3f);
 		GameManager.Instance.EnableMovement();

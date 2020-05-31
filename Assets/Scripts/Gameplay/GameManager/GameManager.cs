@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        indexIsland = 1;        //1
+        indexIsland = 4;        //1
         indexInsideIsland = 1;
         indexAudio = 0;
         physicalSun.SetActive(false);
@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviour
         firstPersonController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
 
         player.enabled = false;
-        //player.transform.position = beginPoint.position;
+        //player.transform.position = beginPoint.position;    //outcomment
         player.enabled = true;
         manualNight = false;
 
@@ -144,7 +144,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //outcomment
         /*if (timer < initClip.length - 5)
         {
             timer += Time.deltaTime;
@@ -163,7 +163,7 @@ public class GameManager : MonoBehaviour
         {
             timerAudios += Time.deltaTime;
             //Debug.Log(indexAudio);
-            Debug.Log(timerAudios);
+            //Debug.Log(timerAudios);
         }
 
         if (indexIsland == 1 && indexInsideIsland == 1)     //corridor
@@ -318,6 +318,7 @@ public class GameManager : MonoBehaviour
             if (!action)
             {
                 timerInaction += Time.deltaTime;
+                //Debug.Log(timerInaction);
                 if (timerInaction > timeInaction)
                 {
                     DisableMovement();
@@ -455,6 +456,7 @@ public class GameManager : MonoBehaviour
     public void DissolveStatueSign()
     {
         StartCoroutine(DissolveStatue(statueSign, false));
+        statueSign.GetComponent<BoxCollider>().enabled = false;
         statueDisolved = true;
     }
 

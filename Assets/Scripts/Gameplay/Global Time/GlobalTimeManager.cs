@@ -30,7 +30,7 @@ public class GlobalTimeManager : MonoBehaviour
     public bool isNight;
 
     private int indexBells;
-    private float executionTimeMins;
+    private float executionTime;
     private GameManager gameManager;
     private AudioSource scratchAudioSource;
 
@@ -63,22 +63,23 @@ public class GlobalTimeManager : MonoBehaviour
         timer = 0;
         isNight = false;
         indexBells = 0;
-        executionTimeMins = timingClips[timingClips.Length-1];    //10f
+        executionTime = timingClips[timingClips.Length-1];    //600 --> 60 secs x 10 mins
         //executionTimeMins = 5;
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
+        
         //Debug.Log(timingClips[indexBells]);
 
         if (!isNight)
         {
+            timer += Time.deltaTime;
             if (lerpValue < 1)
             {
-                lerpValue = timer / (executionTimeMins * 60);
-                //lerpValue = timer / (executionTimeMins);
+                lerpValue = timer / (executionTime);
+                
 
                 lerpedSkyColor = Color.Lerp(initSkyColor, newSkyColor, lerpValue);
                 lerpedHorizonColor = Color.Lerp(initHorizonColor, newHorizonColor, lerpValue);
@@ -115,6 +116,9 @@ public class GlobalTimeManager : MonoBehaviour
                 {
                     scratchAudioSource.gameObject.GetComponent<ScratchManager>().ScratchVoxophone();
                 }
+                DialogueManager.Instance.audioSource.Stop();
+                DialogueManager.Instance.audioKindEnum = AudioKind.AudioKindEnum.None;
+                DialogueManager.Instance.audioSource.clip = null;
             }
             audioSource.Play();
             if (indexBells < timingClips.Length -1)
