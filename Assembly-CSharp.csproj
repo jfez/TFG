@@ -55,6 +55,8 @@
   <ItemGroup>
      <Compile Include="Assets\Glitch\ChangeCamera.cs" />
      <Compile Include="Assets\Glitch\Glitch.cs" />
+     <Compile Include="Assets\ImageEffects\GradientFog\GradientFog.cs" />
+     <Compile Include="Assets\ImageEffects\GradientFog\SecondaryGradient.cs" />
      <Compile Include="Assets\Maze\HuntAndKillMazeAlgorithm.cs" />
      <Compile Include="Assets\Maze\MazeAlgorithm.cs" />
      <Compile Include="Assets\Maze\MazeCell.cs" />
@@ -113,6 +115,7 @@
      <Compile Include="Assets\Shaders\Toon Shader\ToonShaderLightSettings.cs" />
      <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
      <None Include="Assets\Resources\Dialogues\2.5.txt" />
+     <None Include="Assets\ImageEffects\GradientFog\Shader\GradientFog.shader" />
      <None Include="Assets\Resources\Dialogues\3.8.txt" />
      <None Include="Assets\Resources\Dialogues\1.3.txt" />
      <None Include="Assets\Resources\Dialogues\4.9.txt" />
