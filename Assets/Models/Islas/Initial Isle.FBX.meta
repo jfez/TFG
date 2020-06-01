@@ -1797,7 +1797,22 @@ ModelImporter:
     4300708: GeoSphere402
     7400000: Take 001
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 02 - Default
+    second: {fileID: 2100000, guid: 740f6b23b71af2848bd45ae40668ebf5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: f9a5967cdc6bd3a4faaba35ab5f70fa8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: default
+    second: {fileID: 2100000, guid: 9a48c2acd7447534cab09f29fbfd7bb5, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

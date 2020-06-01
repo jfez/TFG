@@ -35,7 +35,32 @@ ModelImporter:
     4300004: Estante
     4300006: Mangueras
     4300008: Agua
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 7696376f6a065ab45a7e2b652cd9a034, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: b7d7a2a3d2de6ff46adee0b235776c09, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: b9fdf3ce657e80048944825b6999901b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.004
+    second: {fileID: 2100000, guid: 6d898fded499cea46b26633db4183dcc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 9dd23965aa1f50c47a0b9841627f4fd8, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
