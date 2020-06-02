@@ -764,7 +764,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 33db7e0ec6c3168429c7dcdac637d050, type: 3}
     m_FontSize: 64
     m_FontStyle: 0
     m_BestFit: 0
@@ -776,7 +776,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Nosotros\n\njfezz\n\nAltoke mi xavi\n\nActores de doblaje y m\xE1s gente\n\nfreesound...\n\n.\n.\n."
+  m_Text: "Jorge Fern\xE1ndez & Xavier Perona\n\nJorge Fern\xE1ndez\n\nXavier Perona\n\nDubbing
+    Actors: Olafur, Rosana, Juan An\n\nfreesound...\n\n.\n.\n."
 --- !u!222 &716801286
 CanvasRenderer:
   m_ObjectHideFlags: 0
