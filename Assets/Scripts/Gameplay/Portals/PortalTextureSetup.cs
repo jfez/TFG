@@ -12,8 +12,7 @@ public class PortalTextureSetup : MonoBehaviour
 	public Camera cameraF;
 	public Camera cameraG;
 	public Camera cameraH;
-	public Camera cameraI;
-	public Camera cameraJ;
+
 
 	public Material cameraMatA;
 	public Material cameraMatB;
@@ -23,8 +22,7 @@ public class PortalTextureSetup : MonoBehaviour
 	public Material cameraMatF;
 	public Material cameraMatG;
 	public Material cameraMatH;
-	public Material cameraMatI;
-	public Material cameraMatJ;
+
 
 
 	// Use this for initialization
@@ -87,18 +85,6 @@ public class PortalTextureSetup : MonoBehaviour
 		cameraH.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
 		cameraMatH.mainTexture = cameraH.targetTexture;
 
-		if (cameraI.targetTexture != null)
-		{
-			cameraI.targetTexture.Release();
-		}
-		cameraI.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
-		cameraMatI.mainTexture = cameraI.targetTexture;
-
-		if (cameraJ.targetTexture != null)
-		{
-			cameraJ.targetTexture.Release();
-		}
-		cameraJ.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
-		cameraMatJ.mainTexture = cameraJ.targetTexture;
+		
 	}
 }

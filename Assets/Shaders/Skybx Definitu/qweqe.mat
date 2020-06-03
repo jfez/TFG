@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: qweqe
-  m_Shader: {fileID: 4800000, guid: f99fa7ce9bec8b442bdbcf461fbd8c05, type: 3}
+  m_Shader: {fileID: 4800000, guid: 0a154a980c98bb64d9c86ee5af782914, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -28,9 +28,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_2E2A70C8: 5
+    - Vector1_2E2A70C8: 0.5
     - Vector1_AE1888DF: 0.2
-    - Vector1_B1400E81: 10
+    - Vector1_B1400E81: 10.5
+    - _CloudColor: 0.203
     m_Colors:
     - Color_4D6706AD: {r: 0.2901961, g: 0.8392157, b: 1.4980392, a: 0}
     - Color_93598319: {r: 0.8862745, g: 0.8862745, b: 0.8862745, a: 0}
@@ -38,6 +39,6 @@ Material:
     - _Color_93598319: {r: 0.3748082, g: 0.3019608, b: 0.7372549, a: 0}
     - _Color_EC61DFF: {r: 0.2227216, g: 0.3927819, b: 0.8584906, a: 0}
     - _HorizonColor: {r: 0.6868548, g: 0.6899058, b: 0.990566, a: 0}
-    - _NubesColor: {r: 0.8207692, g: 0.7973923, b: 0.9339623, a: 0}
-    - _SkyColor: {r: 0.2227216, g: 0.3927819, b: 0.8584906, a: 0}
+    - _NubesColor: {r: 1, g: 1, b: 1, a: 0}
+    - _SkyColor: {r: 0.018244924, g: 0.666025, b: 0.7735849, a: 0}
     - _SunDirection: {r: 0.5, g: 0.5, b: -0.5, a: 0}

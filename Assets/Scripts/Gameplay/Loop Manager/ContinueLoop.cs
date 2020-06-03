@@ -18,7 +18,7 @@ public class ContinueLoop : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (!GameManager.Instance.action)
+        if (!GameManager.Instance.action && !ManagerMenu.Instance.paused)
         {
             GameManager.Instance.action = true;
             GameManager.Instance.DisableMovement();

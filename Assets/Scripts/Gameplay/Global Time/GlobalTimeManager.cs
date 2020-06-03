@@ -64,6 +64,7 @@ public class GlobalTimeManager : MonoBehaviour
         isNight = false;
         indexBells = 0;
         executionTime = timingClips[timingClips.Length-1];    //600 --> 60 secs x 10 mins
+        //executionTime = 20f;
         //executionTimeMins = 5;
     }
 

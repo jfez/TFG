@@ -8,7 +8,7 @@ public class ListenerSculpture : MonoBehaviour
     
     private VoiceRecognition voiceRecognition;
     private float listenerDistance;
-    Color lerpedColor;
+    float lerpedValue;
     
     // Start is called before the first frame update
     void Start()
@@ -16,8 +16,8 @@ public class ListenerSculpture : MonoBehaviour
         Eyes = GameObject.FindGameObjectWithTag("MainCamera").transform;
         voiceRecognition = GameObject.FindGameObjectWithTag("VoiceRecognition").GetComponent<VoiceRecognition>();
         listenerDistance = 7f;
-        lerpedColor = Color.red;
-        GetComponent<Renderer>().material.SetColor("_BaseColor", lerpedColor);
+        lerpedValue = 0;
+        GetComponent<Renderer>().material.SetFloat("_Metallic", lerpedValue);
         //Debug.Log(lerpedColor);
         //Debug.Log(GetComponent<Renderer>().material.color);
     }
@@ -32,17 +32,17 @@ public class ListenerSculpture : MonoBehaviour
                 //Debug.Log(voiceRecognition.GetLoudness());
                 float percentage = voiceRecognition.GetLoudness() / 15;
                 //Debug.Log(percentage);
-                lerpedColor = Color.Lerp(Color.red, Color.blue, percentage);
+                lerpedValue = percentage;
                 //Debug.Log(lerpedColor);
-                GetComponent<Renderer>().material.SetColor("_BaseColor", lerpedColor);
+                GetComponent<Renderer>().material.SetFloat("_Metallic", lerpedValue);
             } 
         }
 
         else
         {
             //float percentage = 0;
-            lerpedColor = Color.red;
-            GetComponent<Renderer>().material.SetColor("_BaseColor", lerpedColor);
+            lerpedValue = 0;
+            GetComponent<Renderer>().material.SetFloat("_Metallic", lerpedValue);
         }
     }
 }

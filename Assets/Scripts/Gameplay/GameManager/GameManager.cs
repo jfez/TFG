@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        indexIsland = 1;        //1
+        indexIsland = 4;        //1
         indexInsideIsland = 1;
         indexAudio = 0;
         physicalSun.SetActive(false);
@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
         timer = 0;
         timerAudios = 0;
         timerDecision = 0;
-        timeDecision = 60;
+        timeDecision = 90;
         timerInaction = 0;
         timeInaction = 90;
         fadeOut = true;            //false
@@ -326,7 +326,7 @@ public class GameManager : MonoBehaviour
                 {
                     DisableMovement();
                     loopManager.BreakLoop();
-                    StartCoroutine(FadeIn());
+                    StartCoroutine(FadeIn(false));
                     action = true;
                 }
             }
@@ -412,7 +412,7 @@ public class GameManager : MonoBehaviour
         ManagerMenu.Instance.paused = false;
     }
 
-    private IEnumerator FadeIn()
+    private IEnumerator FadeIn(bool loop)
     {
         imgBlack.gameObject.SetActive(true);
         for (float i = 0; i <= 3; i += Time.deltaTime)
@@ -425,7 +425,18 @@ public class GameManager : MonoBehaviour
 
         
         yield return new WaitForSeconds (2f);
-        SceneManager.LoadScene("Init");
+
+        if (loop)
+        {
+            SceneManager.LoadScene("Init");
+        }
+
+        else
+        {
+            Debug.Log("QUIT");
+            Application.Quit();
+        }
+        
     }
 
     private IEnumerator FadeInAndOut()
@@ -514,7 +525,7 @@ public class GameManager : MonoBehaviour
     }
     public void FinalFade()
     {
-        StartCoroutine(FadeIn());
+        StartCoroutine(FadeIn(true));
     }
     public void PlatonicFade()
     {

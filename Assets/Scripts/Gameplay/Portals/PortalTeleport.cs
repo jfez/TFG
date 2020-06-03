@@ -48,6 +48,8 @@ public class PortalTeleport : MonoBehaviour
                 player.transform.position = reciever.position + positionOffset;
                 player.enabled = true;
 
+				
+				DoTP();
 				playerIsOverlapping = false;
 			}
 		}
@@ -58,45 +60,7 @@ public class PortalTeleport : MonoBehaviour
 		if (other.tag == "Player")
 		{
 			playerIsOverlapping = true;
-			audiotp.Play();
-
-			if (GameManager.Instance.indexIsland == 1)
-			{
-				gameManager.ActivateScreams();
-			}
-
-			else if (GameManager.Instance.indexIsland == 2 && !gameManager.GetIsNight())
-			{
-				gameManager.ActivatePhysicSun();
-			}
-
-			GameManager.Instance.indexIsland++;
-			GameManager.Instance.indexInsideIsland = 1;
-			GameManager.Instance.finishAudios = false;
-			GameManager.Instance.timerAudios = 0;
-			GameManager.Instance.indexAudio = 0;
-
-			if (GameManager.Instance.indexIsland == 3 && discussionClip != null)
-			{
-				if (DialogueManager.Instance.audioKindEnum == AudioKind.AudioKindEnum.Time)
-				{
-					scratchAudioSource.gameObject.GetComponent<ScratchManager>().ScratchTime();
-				}
-
-				else if (DialogueManager.Instance.audioKindEnum == AudioKind.AudioKindEnum.Voxophone)
-				{
-					scratchAudioSource.gameObject.GetComponent<ScratchManager>().ScratchVoxophone();
-				}
-
-				DialogueManager.Instance.audioSource.spatialBlend = 0f;
-				DialogueManager.Instance.BeginDialogue(discussionClip, timeOffset, AudioKind.AudioKindEnum.Event);
-			}
-
-			else if (GameManager.Instance.indexIsland == 6)
-			{
-				GameManager.Instance.PlatonicFade();
-				StartCoroutine(WaitForScreams());
-			}
+			
 		}
 	}
 
@@ -114,6 +78,49 @@ public class PortalTeleport : MonoBehaviour
 		if (other.tag == "Player")
 		{
 			playerIsOverlapping = false;
+		}
+	}
+
+	private void DoTP()
+	{
+		audiotp.Play();
+
+		if (GameManager.Instance.indexIsland == 1)
+		{
+			gameManager.ActivateScreams();
+		}
+
+		else if (GameManager.Instance.indexIsland == 2 && !gameManager.GetIsNight())
+		{
+			gameManager.ActivatePhysicSun();
+		}
+
+		GameManager.Instance.indexIsland++;
+		GameManager.Instance.indexInsideIsland = 1;
+		GameManager.Instance.finishAudios = false;
+		GameManager.Instance.timerAudios = 0;
+		GameManager.Instance.indexAudio = 0;
+
+		if (GameManager.Instance.indexIsland == 3 && discussionClip != null)
+		{
+			if (DialogueManager.Instance.audioKindEnum == AudioKind.AudioKindEnum.Time)
+			{
+				scratchAudioSource.gameObject.GetComponent<ScratchManager>().ScratchTime();
+			}
+
+			else if (DialogueManager.Instance.audioKindEnum == AudioKind.AudioKindEnum.Voxophone)
+			{
+				scratchAudioSource.gameObject.GetComponent<ScratchManager>().ScratchVoxophone();
+			}
+
+			DialogueManager.Instance.audioSource.spatialBlend = 0f;
+			DialogueManager.Instance.BeginDialogue(discussionClip, timeOffset, AudioKind.AudioKindEnum.Event);
+		}
+
+		else if (GameManager.Instance.indexIsland == 6)
+		{
+			GameManager.Instance.PlatonicFade();
+			StartCoroutine(WaitForScreams());
 		}
 	}
 }

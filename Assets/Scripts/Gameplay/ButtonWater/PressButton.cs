@@ -13,6 +13,7 @@ public class PressButton : MonoBehaviour
     private float timeOffset;
 
     public AudioClip dialogueClip;
+    public AudioSource rainAudio;
     
     // Start is called before the first frame update
     void Start()
@@ -38,12 +39,12 @@ public class PressButton : MonoBehaviour
             //Instantiate(particlesSystem, particlesSpawn.position, Quaternion.identity);
             //other disolve
             //este se pone bonito
-            //trigger animación vaciar tanque de agua
 
             PlayAudio();
         }
 
-        Instantiate(particlesSystem, particlesSpawn.position, Quaternion.identity); 
+        GameObject particles = Instantiate(particlesSystem, particlesSpawn.position, Quaternion.identity); 
+        Destroy(particles, 7f);
     }
 
     public void NoDecision()
@@ -65,5 +66,7 @@ public class PressButton : MonoBehaviour
 
         DialogueManager.Instance.audioSource.spatialBlend = 0f;
         DialogueManager.Instance.BeginDialogue(dialogueClip, timeOffset, AudioKind.AudioKindEnum.Event);
+
+        rainAudio.Play();
     }
 }

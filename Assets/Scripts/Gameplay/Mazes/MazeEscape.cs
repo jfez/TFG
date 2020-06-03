@@ -19,6 +19,7 @@ public class MazeEscape : MonoBehaviour
     private float timeOffset;
     public AudioClip dialogueHermes;
     public AudioClip dialogueEuridice;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +44,8 @@ public class MazeEscape : MonoBehaviour
         {
             if (Input.GetMouseButton(0))
             {
-                wallBehind.SetActive(false);
+                //wallBehind.SetActive(false);
+                
 
                 if (!closing)
                 {
@@ -51,6 +53,7 @@ public class MazeEscape : MonoBehaviour
                     audioSource.Play();
                     closing = true;
                     indexPress++;
+                    animator.SetTrigger("open");
 
                     if (DialogueManager.Instance.audioKindEnum != AudioKind.AudioKindEnum.Event)
                     {
@@ -93,13 +96,15 @@ public class MazeEscape : MonoBehaviour
 
             else
             {
-                wallBehind.SetActive(true);
+                //wallBehind.SetActive(true);
+                
 
                 if (closing)
                 {
                     audioSource.clip = closeDoorClip;
                     audioSource.Play();
                     closing = false;
+                    animator.SetTrigger("close");
                 }
                 
             }
@@ -115,6 +120,7 @@ public class MazeEscape : MonoBehaviour
             audioSource.clip = closeDoorClip;
             audioSource.Play();
             closing = false;
+            animator.SetTrigger("close");
         }
         
     }
@@ -132,5 +138,7 @@ public class MazeEscape : MonoBehaviour
     void ActivateLocked () 
     {
         locked = true;
+        audioSource.clip = closeDoorClip;
+        audioSource.Play();
     }
 }
