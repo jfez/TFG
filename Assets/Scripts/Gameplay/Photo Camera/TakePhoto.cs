@@ -20,7 +20,8 @@ public class TakePhoto : MonoBehaviour
     public bool keyPicked;
     
     private string finalPath;
-    private Sprite last_screenshot_save;
+    [HideInInspector]
+    public Sprite last_screenshot_save;
 
     private Transform guide;
 

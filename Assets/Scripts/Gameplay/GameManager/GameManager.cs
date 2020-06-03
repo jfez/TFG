@@ -89,6 +89,9 @@ public class GameManager : MonoBehaviour
     public AudioSource fallDownJail;
     public GameObject[] prisoners;
     public LoopManagerGame loopManager;
+    public GameObject shaderSecondPortalDisabled;
+    public GameObject thirdSecondPortalDisabled;
+
 
 
     
@@ -105,7 +108,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        indexIsland = 4;        //1
+        indexIsland = 1;        //1
         indexInsideIsland = 1;
         indexAudio = 0;
         physicalSun.SetActive(false);
@@ -358,6 +361,7 @@ public class GameManager : MonoBehaviour
             colliderSecondPortal.SetActive(true);
             colliderSecondStop.SetActive(false);
             DissolvePrisoners();
+            shaderSecondPortalDisabled.SetActive(false);
         }
     }
 
@@ -366,6 +370,7 @@ public class GameManager : MonoBehaviour
 
         colliderThirdPortal.SetActive(true);
         colliderThirdStop.SetActive(false);
+        thirdSecondPortalDisabled.SetActive(false);
         
     }
 
@@ -373,6 +378,7 @@ public class GameManager : MonoBehaviour
     {
         colliderThirdPortal.SetActive(false);
         colliderThirdStop.SetActive(true);
+        thirdSecondPortalDisabled.SetActive(true);
         
     }
 

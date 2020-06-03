@@ -6,13 +6,15 @@ public class OpenDoor : MonoBehaviour
 {
     public PickUp pickUp;
     public TakePhoto takePhoto;
-    public GameObject cable;
+    public GameObject[] cables;
     public Material openMaterial;
     public AudioSource soundDoor;
+    public Animator animatorSlidingDoor;
+    public GameObject panelPhoto;
     // Start is called before the first frame update
     void Start()
     {
-        
+        panelPhoto.SetActive(false);
     }
 
     // Update is called once per frame
@@ -21,21 +23,28 @@ public class OpenDoor : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider collider)
+    void OnMouseDown()
     {
-        if (collider.gameObject.CompareTag("Player") && collider.gameObject.GetComponent<TakePhoto>().keyPicked)
+        
+        if (pickUp != null && takePhoto != null && takePhoto.keyPicked)
         {
-            if (pickUp != null && takePhoto != null)
+            Debug.Log("OPEN DOOR");
+            foreach (GameObject cable in cables)
             {
-                Debug.Log("OPEN DOOR");
                 cable.GetComponent<MeshRenderer>().material = openMaterial;
-                soundDoor.Play();
-                GameManager.Instance.onPositionToDisolve = true;
-                pickUp.DestroyCamera();
-                takePhoto.DestroyPhoto();
-                Destroy(gameObject);
             }
+
+            animatorSlidingDoor.SetTrigger("OpenSlidingDoor");
             
+            soundDoor.Play();
+            GameManager.Instance.onPositionToDisolve = true;
+            pickUp.DestroyCamera();
+            takePhoto.DestroyPhoto();
+            panelPhoto.SetActive(true);
+            panelPhoto.GetComponent<SpriteRenderer>().sprite = takePhoto.last_screenshot_save;
+            Destroy(gameObject);
         }
+            
+        
     }
 }

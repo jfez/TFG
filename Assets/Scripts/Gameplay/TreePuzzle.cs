@@ -18,6 +18,7 @@ public class TreePuzzle : MonoBehaviour
     public float timeOffset;
 
     private AudioSource scratchAudioSource;
+    public GameObject shaderPortalDisabled;
     
     void Start()
     {
@@ -71,6 +72,8 @@ public class TreePuzzle : MonoBehaviour
         {
             colliderPortal.SetActive(true);
             colliderStop.SetActive(false);
+            shaderPortalDisabled.SetActive(false);
+
 
             if (DialogueManager.Instance.audioKindEnum == AudioKind.AudioKindEnum.Time)
             {

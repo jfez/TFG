@@ -108,6 +108,18 @@ public class VoiceRecognition : MonoBehaviour
             timer = 0f;
             highestLoudness = loudness;
         }
+
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            highestLoudness = 100f;
+            Stop();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            
+            Past();
+        }
         //}
         
     }
