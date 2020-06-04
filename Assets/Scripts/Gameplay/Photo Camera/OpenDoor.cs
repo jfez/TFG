@@ -11,10 +11,15 @@ public class OpenDoor : MonoBehaviour
     public AudioSource soundDoor;
     public Animator animatorSlidingDoor;
     public GameObject panelPhoto;
+    private float pickUpDistance;
+
+    private Transform Eyes;
     // Start is called before the first frame update
     void Start()
     {
         panelPhoto.SetActive(false);
+        Eyes = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        pickUpDistance = 15f;
     }
 
     // Update is called once per frame
@@ -26,7 +31,8 @@ public class OpenDoor : MonoBehaviour
     void OnMouseDown()
     {
         
-        if (pickUp != null && takePhoto != null && takePhoto.keyPicked && !takePhoto.focus)
+        if (pickUp != null && takePhoto != null && takePhoto.keyPicked && !takePhoto.focus &&
+            Vector3.Distance(Eyes.position, transform.position) < pickUpDistance)
         {
             Debug.Log("OPEN DOOR");
             foreach (GameObject cable in cables)
