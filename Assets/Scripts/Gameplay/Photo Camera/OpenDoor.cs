@@ -26,7 +26,7 @@ public class OpenDoor : MonoBehaviour
     void OnMouseDown()
     {
         
-        if (pickUp != null && takePhoto != null && takePhoto.keyPicked)
+        if (pickUp != null && takePhoto != null && takePhoto.keyPicked && !takePhoto.focus)
         {
             Debug.Log("OPEN DOOR");
             foreach (GameObject cable in cables)
