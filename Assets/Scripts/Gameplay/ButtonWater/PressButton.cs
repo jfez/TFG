@@ -14,6 +14,7 @@ public class PressButton : MonoBehaviour
 
     public AudioClip dialogueClip;
     public AudioSource rainAudio;
+    public GameObject[] objectsToDissolve;
     
     // Start is called before the first frame update
     void Start()
@@ -35,21 +36,57 @@ public class PressButton : MonoBehaviour
         {
             activated = true;
             GameManager.Instance.decision = true;
+            rainAudio.Play();
             
-            //Instantiate(particlesSystem, particlesSpawn.position, Quaternion.identity);
-            //other disolve
-            //este se pone bonito
+            GameObject particles = Instantiate(particlesSystem, particlesSpawn.position, Quaternion.identity); 
+            Destroy(particles, 7f);
+            foreach(GameObject mesh in objectsToDissolve)
+            {
+                StartCoroutine(DissolveStatue(mesh));
+            }
+            
 
             PlayAudio();
         }
 
-        GameObject particles = Instantiate(particlesSystem, particlesSpawn.position, Quaternion.identity); 
-        Destroy(particles, 7f);
+        
+    }
+
+    private IEnumerator DissolveStatue(GameObject mesh)
+    {
+        float timeDissolve = 3f;
+        float lerpValue = 0;
+        
+        
+        // loop over 3 seconds backwards
+        for (float i = 0; i <= timeDissolve; i += Time.deltaTime)
+        {
+            lerpValue = i / timeDissolve;
+            mesh.GetComponent<MeshRenderer>().material.SetFloat("_Mask", lerpValue);
+            yield return null;
+        }
+
+        Destroy(mesh);
     }
 
     public void NoDecision()
     {
-        Debug.Log("NO DECISION");
+        if (!activated && !other.activated)
+        {
+            activated = true;
+            GameManager.Instance.decision = true;
+            
+            
+            foreach(GameObject mesh in objectsToDissolve)
+            {
+                StartCoroutine(DissolveStatue(mesh));
+            }
+
+            foreach (GameObject mesh in other.objectsToDissolve)
+            {
+                StartCoroutine(DissolveStatue(mesh));
+            }
+        }
     }
 
     public void PlayAudio()
@@ -67,6 +104,6 @@ public class PressButton : MonoBehaviour
         DialogueManager.Instance.audioSource.spatialBlend = 0f;
         DialogueManager.Instance.BeginDialogue(dialogueClip, timeOffset, AudioKind.AudioKindEnum.Event);
 
-        rainAudio.Play();
+        
     }
 }

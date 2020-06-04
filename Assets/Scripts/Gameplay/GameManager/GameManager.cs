@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
     public LoopManagerGame loopManager;
     public GameObject shaderSecondPortalDisabled;
     public GameObject thirdSecondPortalDisabled;
+    public Transform[] freedSoulPositionsPrisoners;
 
 
 
@@ -108,7 +109,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        indexIsland = 4;        //1
+        indexIsland = 1;        //1
         indexInsideIsland = 1;
         indexAudio = 0;
         physicalSun.SetActive(false);
@@ -136,7 +137,7 @@ public class GameManager : MonoBehaviour
         firstPersonController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
 
         player.enabled = false;
-        //player.transform.position = beginPoint.position;    //outcomment
+        player.transform.position = beginPoint.position;    //outcomment
         player.enabled = true;
         manualNight = false;
 
@@ -472,26 +473,26 @@ public class GameManager : MonoBehaviour
 
     public void DissolveStatueSign()
     {
-        StartCoroutine(DissolveStatue(statueSign, false));
+        StartCoroutine(DissolveStatue(statueSign, false, particlesDissolvePosition));
         statueSign.GetComponent<BoxCollider>().enabled = false;
         statueDisolved = true;
     }
 
     public void DissolvePrisoners()
     {
-        foreach (GameObject statue in prisoners)
+        for (int i = 0; i < freedSoulPositionsPrisoners.Length; i++)
         {
-            StartCoroutine(DissolveStatue(statue, true));
+            StartCoroutine(DissolveStatue(prisoners[i], true, freedSoulPositionsPrisoners[i]));
         }
     }
 
-    private IEnumerator DissolveStatue(GameObject statue, bool freedSoul)
+    private IEnumerator DissolveStatue(GameObject statue, bool freedSoul, Transform positionFreedSoul)
     {
         float timeDissolve = 3f;
         float lerpValue = 0;
         if (freedSoul)
         {
-            GameObject particlesInstanced = Instantiate (particlesDissolveEffect, particlesDissolvePosition.position, particlesDissolveEffect.transform.rotation);
+            GameObject particlesInstanced = Instantiate (particlesDissolveEffect, positionFreedSoul.position, particlesDissolveEffect.transform.rotation);
             Destroy(particlesInstanced, 10f);
         }
         
