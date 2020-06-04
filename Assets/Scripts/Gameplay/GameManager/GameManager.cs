@@ -120,8 +120,8 @@ public class GameManager : MonoBehaviour
         timeDecision = 90;
         timerInaction = 0;
         timeInaction = 90;
-        fadeOut = true;            //false
-        presentationDone = true;   //false
+        fadeOut = false;            //false
+        presentationDone = false;   //false
         finishAudios = false;
         decision = false;
         action = false;
@@ -129,15 +129,15 @@ public class GameManager : MonoBehaviour
         onPositionToDisolve = false;
 
         BSOAudioSource.clip = initClip;
-        //BSOAudioSource.Play();        //outcomment
-        imgWhite.gameObject.SetActive(false);    //true
+        BSOAudioSource.Play();        //outcomment
+        imgWhite.gameObject.SetActive(true);    //true
         imgBlack.gameObject.SetActive(false);
 
         
         firstPersonController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
 
         player.enabled = false;
-        //player.transform.position = beginPoint.position;    //outcomment
+        player.transform.position = beginPoint.position;    //outcomment
         player.enabled = true;
         manualNight = false;
 
@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //outcomment
-        /*if (timer < initClip.length - 5)
+        if (timer < initClip.length - 5)
         {
             timer += Time.deltaTime;
         }
@@ -161,7 +161,7 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(FadeOut());
                 fadeOut = true;
             }
-        }*/
+        }
 
         if (!ManagerMenu.Instance.paused && !finishAudios && presentationDone)
         {

@@ -43,7 +43,7 @@ public class ManagerMenu : MonoBehaviour
         panelOptions.SetActive(false);
         panelAskExit.SetActive(false);
 
-        paused = false;      //true
+        paused = true;      //true
 
 
         
