@@ -13,6 +13,7 @@ public class ManagerMenu : MonoBehaviour
     public GameObject panelAskExit;
     public GameManager gameManager;
 
+    [HideInInspector]
     public bool paused;
     private FirstPersonController firstPersonController;
 
@@ -43,7 +44,7 @@ public class ManagerMenu : MonoBehaviour
         panelAskExit.SetActive(false);
 
         paused = false;      //true
-        //Time.timeScale = 1f;
+
 
         
         Cursor.lockState = CursorLockMode.Locked;

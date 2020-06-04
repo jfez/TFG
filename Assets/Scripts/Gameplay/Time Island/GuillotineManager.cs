@@ -15,23 +15,27 @@ public class GuillotineManager : MonoBehaviour
     {
         guillotineRB = GetComponent<Rigidbody>();
         guillotineRB.useGravity = false;
+        guillotineRB.isKinematic = true;
 
         headRB = head.GetComponent<Rigidbody>();
         headRB.useGravity = false;
+        headRB.isKinematic = true;
 
         forceExecution = 250f;
     }
 
     public void Execution()
     {
+        guillotineRB.isKinematic = false;
         guillotineRB.useGravity = true;
+        
     }
 
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject == head)
         {
-            
+            headRB.isKinematic = false;
             headRB.useGravity = true;
             headRB.AddForce(-head.transform.up * forceExecution);
         }

@@ -234,23 +234,12 @@ public class DialogueManager : MonoBehaviour
 
                 else
                 {
-                    if (!subtitlesEnabled)
-                    {
-                        Vector2 size = subtitlesStyle.CalcSize(new GUIContent());
-                        GUI.contentColor = Color.black;
-                        GUI.Label(new Rect(Screen.width/2 - size.x/2 + 1, Screen.height/1.1f - size.y + 1, size.x, size.y), "", subtitlesStyle);
-                        GUI.contentColor = Color.white;
-                        GUI.Label(new Rect(Screen.width/2 - size.x/2, Screen.height/1.1f - size.y, size.x, size.y), "", subtitlesStyle);
-                    }
 
-                    else if (ManagerMenu.Instance.paused)
-                    {
-                        Vector2 size = subtitlesStyle.CalcSize(new GUIContent());
-                        GUI.contentColor = new Color (0,0,0,0.3f);
-                        GUI.Label(new Rect(Screen.width/2 - size.x/2 + 1, Screen.height/1.1f - size.y + 1, size.x, size.y), displaySubtitle, subtitlesStyle);
-                        GUI.contentColor = new Color (1,1,1,0.3f);
-                        GUI.Label(new Rect(Screen.width/2 - size.x/2, Screen.height/1.1f - size.y, size.x, size.y), displaySubtitle, subtitlesStyle);
-                    }
+                    Vector2 size = subtitlesStyle.CalcSize(new GUIContent());
+                    GUI.contentColor = Color.black;
+                    GUI.Label(new Rect(Screen.width/2 - size.x/2 + 1, Screen.height/1.1f - size.y + 1, size.x, size.y), "", subtitlesStyle);
+                    GUI.contentColor = Color.white;
+                    GUI.Label(new Rect(Screen.width/2 - size.x/2, Screen.height/1.1f - size.y, size.x, size.y), "", subtitlesStyle);
                     
                     
                 }

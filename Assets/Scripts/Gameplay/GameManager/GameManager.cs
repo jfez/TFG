@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
         firstPersonController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
 
         player.enabled = false;
-        player.transform.position = beginPoint.position;    //outcomment
+        //player.transform.position = beginPoint.position;    //outcomment
         player.enabled = true;
         manualNight = false;
 

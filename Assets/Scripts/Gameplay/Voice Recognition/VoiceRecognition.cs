@@ -91,8 +91,6 @@ public class VoiceRecognition : MonoBehaviour
 
     void Update ()
     {
-        //if (GameManager.Instance.indexIsland == 2)
-        //{
         timer += Time.deltaTime;
 
         loudness = GetAveragedVolume() * sensitivity;
@@ -111,16 +109,20 @@ public class VoiceRecognition : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F3))
         {
-            highestLoudness = 100f;
+            highestLoudness = 10f;
             Stop();
         }
 
         if (Input.GetKeyDown(KeyCode.F4))
         {
-            
+            highestLoudness = 100f;
+            Stop();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F5))
+        { 
             Past();
         }
-        //}
         
     }
 
