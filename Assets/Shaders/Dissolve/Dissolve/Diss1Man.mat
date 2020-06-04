@@ -25,4 +25,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Mask: 0
-    m_Colors: []
+    - _Metallic: 0
+    m_Colors:
+    - Color_2FED442A: {r: 0.95283014, g: 0.9123799, b: 0.9123799, a: 0}
