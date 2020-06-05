@@ -1,6 +1,6 @@
 Win64
 PlayerPath?
-C:/Users/PcCom/Desktop/buildsTestTFG/Oceans of Reflection.exe
+C:/Users/PcCom/Desktop/buildeEntregaTFG/Oceans of Reflection.exe
 SceneListBegin?
 Assets/Scenes/Init.unity
 Assets/Scenes/Load.unity
