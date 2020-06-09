@@ -46,7 +46,16 @@ public class VoiceRecognition : MonoBehaviour
         {
             if(Microphone.devices.Length > 0)
             {
-                selectedDevice = Microphone.devices[Microphone.devices.Length - 1].ToString();
+                try
+                {
+                    selectedDevice = Microphone.devices[PlayerPrefs.GetInt("Microphone")].ToString();
+                }
+
+                catch
+                {
+                    selectedDevice = Microphone.devices[0].ToString();
+                }
+                
                 Debug.Log(Microphone.devices.Length + ", " + selectedDevice);
                 _audio.outputAudioMixerGroup = _mixerGroupMicrophone;
                 _audio.clip = Microphone.Start(selectedDevice, true, 10, AudioSettings.outputSampleRate);

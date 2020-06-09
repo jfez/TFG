@@ -105,8 +105,10 @@
      <Compile Include="Assets\Scripts\Gameplay\testCube.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Time Island\GuillotineManager.cs" />
      <Compile Include="Assets\Scripts\Gameplay\TreePuzzle.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Voice Recognition\ListenerSculptureConfig.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Voice Recognition\SaveVoice.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Voice Recognition\VoiceRecognition.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Voice Recognition\VRConfig.cs" />
      <Compile Include="Assets\Scripts\Init\InitManager.cs" />
      <Compile Include="Assets\Scripts\Init\LoopManager.cs" />
      <Compile Include="Assets\Scripts\Init\OptionsManager.cs" />
