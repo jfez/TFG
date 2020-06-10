@@ -30,29 +30,7 @@ public class VRConfig : MonoBehaviour
         loudness = 0f;
          
         
-        if(Microphone.devices.Length > 0)
-        {
-            selectedDevice = Microphone.devices[0].ToString();
-            PlayerPrefs.SetInt("Microphone", 0);
-            //Debug.Log(Microphone.devices.Length + ", " + selectedDevice);
-            _audio.outputAudioMixerGroup = _mixerGroupMicrophone;
-            _audio.clip = Microphone.Start(selectedDevice, true, 10, AudioSettings.outputSampleRate);
-            _audio.loop = true;
-            _audio.playOnAwake = false;
-            while(!(Microphone.GetPosition(selectedDevice) > 0)) {}
-            _audio.Play();
-        }
-
-        else
-        {
-            useMicrophone = false;
-        }
-
-        if (!useMicrophone)
-        {
-            _audio.outputAudioMixerGroup = _mixerGroupMaster;
-            _audio.clip = null;
-        }
+        DetectMicrophones();
     }
 
     // Update is called once per frame
@@ -98,5 +76,46 @@ public class VRConfig : MonoBehaviour
         PlayerPrefs.SetFloat("Sensitivity", newSensitivity);
         sliderSensitivity.value = newSensitivity;
         sensitivity = newSensitivity;
+    }
+
+    public void DetectMicrophones()
+    {
+        if(Microphone.devices.Length > 0)
+        {
+            if (!PlayerPrefs.HasKey("Microphone"))
+            {
+                PlayerPrefs.SetInt("Microphone", 0);
+            }
+            
+            try
+            {
+                selectedDevice = Microphone.devices[PlayerPrefs.GetInt("Microphone")].ToString();
+            }
+
+            catch
+            {
+                PlayerPrefs.SetInt("Microphone", 0);
+                selectedDevice = Microphone.devices[0].ToString();
+            }
+            //PlayerPrefs.SetInt("Microphone", 0);
+            //Debug.Log(Microphone.devices.Length + ", " + selectedDevice);
+            _audio.outputAudioMixerGroup = _mixerGroupMicrophone;
+            _audio.clip = Microphone.Start(selectedDevice, true, 10, AudioSettings.outputSampleRate);
+            _audio.loop = true;
+            _audio.playOnAwake = false;
+            while(!(Microphone.GetPosition(selectedDevice) > 0)) {}
+            _audio.Play();
+        }
+
+        else
+        {
+            useMicrophone = false;
+        }
+
+        if (!useMicrophone)
+        {
+            _audio.outputAudioMixerGroup = _mixerGroupMaster;
+            _audio.clip = null;
+        }
     }
 }

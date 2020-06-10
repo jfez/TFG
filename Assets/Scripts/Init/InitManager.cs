@@ -23,19 +23,7 @@ public class InitManager : MonoBehaviour
     void Start()
     {
 
-        dropdownMicrophone.ClearOptions();
-
-        List<string> options = new List<string>();
-
-        
-        for (int i = 0; i < Microphone.devices.Length; i++)
-        {
-            string option = Microphone.devices[i].ToString();
-            options.Add(option);
-        }
-
-        dropdownMicrophone.AddOptions(options);
-        //dropdownMicrophone.RefreshShownValue();
+        FillDropdownMicrophones();
         
         panelGeneral.SetActive(true);
         panelOptions.SetActive(false);
@@ -73,6 +61,9 @@ public class InitManager : MonoBehaviour
 
     public void MicroConfig()
     {
+        FillDropdownMicrophones();
+        vRConfig.DetectMicrophones();
+        dropdownMicrophone.value = PlayerPrefs.GetInt("Microphone");
         panelGeneral.SetActive(false);
         panelMicroConfig.SetActive(true);
     }
@@ -108,6 +99,23 @@ public class InitManager : MonoBehaviour
     {
         //Debug.Log(microphoneIndex);
         vRConfig.RestartMicrophone(microphoneIndex);
+    }
+
+    private void FillDropdownMicrophones()
+    {
+        dropdownMicrophone.ClearOptions();
+
+        List<string> options = new List<string>();
+
+        
+        for (int i = 0; i < Microphone.devices.Length; i++)
+        {
+            string option = Microphone.devices[i].ToString();
+            options.Add(option);
+        }
+
+        dropdownMicrophone.AddOptions(options);
+        //dropdownMicrophone.RefreshShownValue();
     }
 
 

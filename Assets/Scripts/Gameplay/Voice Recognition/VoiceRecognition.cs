@@ -95,7 +95,7 @@ public class VoiceRecognition : MonoBehaviour
         loudness = 0f;
         highestLoudness = 0f;
         timer = 0f;
-        minimumLoudness = 55f;      
+        minimumLoudness = 50f;      
     }
 
     void Update ()
@@ -114,6 +114,23 @@ public class VoiceRecognition : MonoBehaviour
         {
             timer = 0f;
             highestLoudness = loudness;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            highestLoudness = 100f;
+            Stop();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            highestLoudness = 10f;
+            Stop();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F5))
+        { 
+            Past();
         }
         
     }
