@@ -1,6 +1,6 @@
 Win64
 PlayerPath?
-C:/Users/PcCom/Desktop/buildeEntregaTFG/Oceans of Reflection.exe
+C:/Users/PcCom/Desktop/OceansOfReflection RRSS/Oceans of Reflection.exe
 SceneListBegin?
 Assets/Scenes/Init.unity
 Assets/Scenes/Load.unity
@@ -195,6 +195,7 @@ fdd7177da17032ba94d98037cc97bb49 Assembly-CSharp-firstpass.dll:UnityStandardAsse
 be3355238e615c9482a00815f1984a37 Assembly-CSharp.dll:.hourLess
 b3ab2106268377ffe25dd18ac23dca28 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 7349ccdd9ac7c5928e2ec0d9e30ad93a Unity.RenderPipelines.HighDefinition.Runtime.dll:UnityEngine.Experimental.Rendering.HDPipeline.IndirectLightingController
+7f78188b3ea8fb07ff44a6c806de54b3 Assembly-CSharp.dll:.VRConfig
 04561ab2e3fdef92bfee231b02af44b2 Unity.RenderPipelines.HighDefinition.Runtime.dll:UnityEngine.Experimental.Rendering.HDPipeline.ScreenSpaceRefraction
 c88c4199b288356ec3eb2f0d85abc619 Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.ButtonHandler
 8860633d29a22ff64e02e18da3716cdf Assembly-CSharp.dll:UnityTemplateProjects.SimpleCameraController
@@ -320,8 +321,9 @@ df434544c9f7b33d1cc7e635b180d279 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 cd1e91f5afed259a1512bbf18dc12bd7 Unity.RenderPipelines.HighDefinition.Runtime.dll:.SceneRenderPipeline
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.FPSCounter
 454e1084f6b3edae9b08c6659e6b8de6 Assembly-CSharp.dll:.PickUp
-85c996faf379fc5b4822f3512df556df Assembly-CSharp.dll:.InitManager
+1cd61627eb588890083dda9c5a46ff11 Assembly-CSharp.dll:.InitManager
 ac6acd886c54c48c599ab5fed5781ea7 Unity.Postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.AmbientOcclusion
+202f3b57f7bf9e07193a5e646faff175 Assembly-CSharp.dll:.ListenerSculptureConfig
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.LoopManagerGame
 8649814970b42d345b89944b862453cc Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
 16e79f3ae2957e866ec1373ffaeca16a Unity.RenderPipelines.HighDefinition.Runtime.dll:UnityEngine.Experimental.Rendering.AdditionalShadowData
